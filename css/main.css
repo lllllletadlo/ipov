@@ -605,3 +605,42 @@ div.mainContent.index {
 @-moz-keyframes wink{50%{opacity:0}}
 @-o-keyframes wink{50%{opacity:0}}
 @keyframes wink{50%{opacity:0}}
+
+
+
+
+
+
+
+@media only screen and (min-width: 0px)  and (max-width: 320px) {
+    body {
+        font-size: 8px;
+    }
+    img {
+        width: 8em;
+    }
+
+    .mainContent.index p {
+        font-size: 1.5em;
+    }
+    .mainTop img {
+        width: 3em;
+    }
+    .mainContent.prihlaseni img, .mainContent.registrace img {
+        width: 8em;
+    }
+    .mainContent .boxGeneral input {
+        line-height: 2.5em;
+    }
+    .mainContent .buttonBlue {
+        line-height: 2.5em;
+    }
+    .nabidkaItem .button img {
+        width: 2em;
+    }
+    .dekujeme .boxGeneral img:first-child {
+        width: 16em;
+    }
+
+
+}
