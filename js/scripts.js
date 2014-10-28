@@ -7,12 +7,12 @@ function onDeviceReady() {
 
     scripDefaultInit();
 
-    //showWindow("index");
+    showWindow("index");
     //showWindow("prihlaseni");
     //showWindow("registrace");
     //showWindow("kalkulace");
     //showWindow("nahravam");
-    showWindow("nabidky");
+    //showWindow("nabidky");
     //showWindow("podrobnosti");
     //showWindow("doplnkove");
     //showWindow("dekujeme");
