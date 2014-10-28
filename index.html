@@ -1,0 +1,279 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="format-detection" content="telephone=no"/>
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
+    <title>ipov</title>
+</head>
+<body>
+<style>
+
+</style>
+
+<link rel="stylesheet" href="css/main.css"/>
+<script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/inited_utils.js"></script>
+<script type="text/javascript" src="js/scriptsDefault.js"></script>
+<script type="text/javascript" src="js/scripts.js"></script>
+<script type="text/javascript" src="js/fastclick.js"></script>
+
+
+<script type="text/javascript">
+
+    var local = true;
+
+    // hacks
+
+
+
+    if (navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/)) {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    if (local) {
+        window.addEventListener("load", onDeviceReady, false);
+    }
+
+    /*
+    window.addEventListener('load', function () {
+        onLoad();
+        FastClick.attach(document.body);
+    }, false);
+*/
+
+</script>
+<div id="main" class="main">
+
+
+
+<!-------------------------------------------------- this info must be last of spec! Put spec before!
+ its on the top of z-index layer
+ -->
+
+<div class="special cover">
+</div>
+
+
+<div data-cont-id="specInfo" class="special info">
+    <div class="symbolLoading">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
+    <h1>Načítám...</h1>
+</div>
+
+
+<!-------------------------------------------------- menu -->
+
+
+<!-------------------------------------------------- tops -->
+
+<div class="mainTop backSeda">
+    <img class="_buttonClick buttonOpacity" data-cont-id="backButton" src="img/back.png">
+    <h1>Výběr pojištění</h1>
+</div>
+
+<!-------------------------------------------------- main content -->
+    <div data-cont-id="contentIndex" class="mainContent index">
+
+        <img src="img/indexPage.png">
+        <div class="box boxGeneral">
+            <h1 class="line">Chci pojistit:</h1>
+            <div class="_buttonClick buttonOpacity" data-click="pojistit('sebe')">
+                <h2>Sebe</h2>
+                <div><p>Vyplňte náš formulář a náš operátor vyřídí vaši
+                    žádost obratem.</p></div>
+            </div>
+        </div>
+        <div class="box boxGeneral">
+            <h1 class="mensi line">nebo</h1>
+            <div class="_buttonClick buttonOpacity" data-click="pojistit('nekoho')">
+                <h2>Někoho jiného</h2>
+                <div><p>Za pojištění někoho jiného obdržíte provizi ve výši blabla % lorem ipsum dolor sit.</p></div>
+            </div>
+
+        </div>
+        <h2 class="footer">© 2014 Top-pojistka.cz, všechna práva vyhrazena</h2>
+    </div>
+
+    <div data-cont-id="prihlaseni" class="mainContent prihlaseni">
+        <img src="img/iPovKolo.png">
+        <div class="boxGeneral">
+            <input placeholder="Přihlašovací jméno"/>
+            <input placeholder="Heslo"/>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="prihlasit()">Přihlásit se</div>
+        </div>
+        <h1>Nemáte ještě iPov účet?</h1>
+        <h2 class="_buttonClick buttonOpacity" data-click="showWindow('registrace')">Zaregistrujte se</h2>
+    </div>
+
+    <div data-cont-id="registrace" class="mainContent registrace">
+        <img src="img/iPovKolo.png">
+        <div class="boxGeneral">
+            <input placeholder="Jméno"/>
+            <input placeholder="Příjmení"/>
+            <input placeholder="+420 Telefon"/>
+            <input placeholder="E-mail (přihlašovací jméno)"/>
+            <input placeholder="Heslo"/>
+            <input placeholder="Heslo znovu"/>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('kalkulace')">Zaregistrovat se</div>
+            <p>Registrací souhlasíte s uchováním vašich osobních údajů pro obchodní účely</p>
+        </div>
+    </div>
+
+    <div data-cont-id="kalkulace" class="mainContent kalkulace">
+        <div class="boxGeneral">
+            <h1 class="line">Údaje o vozidle</h1>
+            <input placeholder="Objem válců *"/>
+            <input placeholder="Výkon (kW) *"/>
+            <h1>Pole označená * jsou povinná</h1>
+            <div class="roundedOne">
+                <input type="checkbox" value="None" id="roundedOne" name="check" />
+                <label for="roundedOne"></label>
+            </div>
+            <h1 class="checkBoxLb">Souhlasím se zpracováním osobních údajů</h1>
+            <div class="buttonBlue backgGrey _buttonClick buttonOpacity" data-click="showWindow('nahravam')">Odeslat</div>
+        </div>
+    </div>
+
+    <div data-cont-id="nahravam" class="mainContent nahravam">
+        <div class="boxGeneral">
+            <div class="spinner"><div></div></div>
+            <h1>Vyčkejte prosím</h1>
+            <p>Náš operátor pro vás zpracovává nabídky pojištění, pokud bude aplikace ukončena, výsledek vám přijde na zadaný e-mail.</p>
+        </div>
+    </div>
+
+    <div data-cont-id="nabidky" class="mainContent nabidky">
+        <div class="boxGeneral">
+            <div class="nabidkaItem _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
+                <div class="obr">
+                    <img src="img/Allianz.png">
+                </div><!--
+             --><div class="popis">
+                <p>Asistenční služba Připojišění skel</p>
+                <h1>9 999 Kč</h1>
+            </div><!--
+         --><div class="button">
+                <img src="img/more.png">
+                <h1 class="_buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">Více</h1>
+            </div>
+            </div>
+            <div class="nabidkaItem">
+                <div class="obr">
+                    <img src="img/Allianz.png">
+                </div><!--
+             --><div class="popis">
+                <p>Asistenční služba Připojišění skel</p>
+                <h1>9 999 Kč</h1>
+            </div><!--
+         --><div class="button">
+                <img src="img/more.png">
+                <h1>Více</h1>
+            </div>
+            </div>
+            <div class="nabidkaItem">
+                <div class="obr">
+                    <img src="img/Allianz.png">
+                </div><!--
+             --><div class="popis">
+                <p>Asistenční služba Připojišění skel</p>
+                <h1>9 999 Kč</h1>
+            </div><!--
+         --><div class="button">
+                <img src="img/more.png">
+                <h1>Více</h1>
+            </div>
+            </div>
+            <div class="nabidkaItem">
+                <div class="obr">
+                    <img src="img/Allianz.png">
+                </div><!--
+             --><div class="popis">
+                <p>Asistenční služba Připojišění skel</p>
+                <h1>9 999 Kč</h1>
+            </div><!--
+         --><div class="button">
+                <img src="img/more.png">
+                <h1>Více</h1>
+            </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div data-cont-id="podrobnosti" class="mainContent podrobnosti">
+        <div class="boxGeneral">
+            <div class="box">
+                <img src="img/Allianz.png">
+                <h1>9 999 Kč</h1>
+                <h2>Za 12 měsíců</h2>
+                <div class="par">
+                    <h3>Rozsah pojištění</h3><h4>Lorem ipsum</h4>
+                </div>
+                <div class="par list">
+                    <h3 class="single">Limity pojištění:</h3>
+                    <h4>Nehody</h4><h4>50 000 Kč</h4>
+                    <h4>Destrukce</h4><h4>40 000 Kč</h4>
+                </div>
+                <div class="par">
+                    <h3>Pojištění obsahuje:</h3><div class="left">
+                    <h4>Asistenční službu</h4>
+                    <h4>Přítele na telefonu</h4>
+                </div>
+                </div>
+                <div class="par">
+                    <h3>Připojištění skel:</h3><h4></h4>
+                </div>
+                <select>
+                    <option selected="selected">Zvolte částku</option>
+                    <option>10 000 Kč</option>
+                    <option>12 000 Kč</option>
+                </select>
+            </div>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove')">Chci toto pojištění</div>
+            <p>Před dokončením objednávky budete
+                v několika krocích vyzváni k doplnění
+                vašich údajů</p>
+        </div>
+    </div>
+
+    <div data-cont-id="doplnkove" class="mainContent doplnkove">
+        <div class="boxGeneral">
+            <h1 class="line"><span>Rekapitulace</span></h1>
+            <h2>Tovární značka:</h2><span>Škoda</span><br>
+            <h2>Typ vozidla:</h2><span>Octavia</span><br>
+            <h2>Číslo VTP:</h2><span>876587645</span><br>
+            <h2>RZ:</h2><span>4A4 6538</span><br>
+            <h2>VIN:</h2><span>VIN86543</span><br>
+            <h2>Objem válců kW:</h2><span>132</span><br>
+            <h2>Rok výroby:</h2><span>2012</span><br>
+            <h2>Palivo</h2><span>Benzín</span><br>
+            <br><br>
+            <h2>Jméno</h2><span>Tomáš</span><br>
+            <h2>Příjmení</h2><span>Novák</span><br>
+            <h2>Rodné číslo</h2><span>880415/2467</span><br>
+            <h2>Ulice nebo místo</h2><span>Kournní</span><br>
+            <h3>Krok 5/5</h3>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('dekujeme')">Závazně objednávám</div>
+        </div>
+    </div>
+
+<div data-cont-id="dekujeme" class="mainContent dekujeme">
+    <div class="boxGeneral">
+        <img src="img/iPovKolo240.png" onclick="showWindow('index')">
+        <h1>Děkujeme</h1>
+        <h2>Náš operátor vás bude brzy kontaktovat.</h2>
+        <h3>Sdílet s přáteli:</h3>
+        <img src="img/fb.png">
+    </div>
+</div>
+
+<div id="verzeApp">0.1</div>
+</div>
+</body>
+</html>
