@@ -72,7 +72,7 @@
 <!-------------------------------------------------- tops -->
 
 <div class="mainTop backSeda">
-    <img class="_buttonClick buttonOpacity" data-cont-id="backButton" src="img/back.png">
+    <img class="_buttonClick buttonOpacity" data-cont-id="backButton" data-click="pageSys.goBack()" src="img/back.png">
     <h1>Výběr pojištění</h1>
 </div>
 
@@ -82,21 +82,21 @@
         <img src="img/indexPage.png">
         <div class="box boxGeneral">
             <h1 class="line">Chci pojistit:</h1>
-            <div class="_buttonClick buttonOpacity" data-click="pojistit('sebe')">
-                <h2>Sebe</h2>
-                <div><p>Vyplňte náš formulář a náš operátor vyřídí vaši
+            <div>
+                <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="pojistit('sebe')">Sebe</div>
+                <div><p class="m">Vyplňte náš formulář a náš operátor vyřídí vaši
                     žádost obratem.</p></div>
             </div>
         </div>
         <div class="box boxGeneral">
             <h1 class="mensi line">nebo</h1>
-            <div class="_buttonClick buttonOpacity" data-click="pojistit('nekoho')">
-                <h2>Někoho jiného</h2>
-                <div><p>Za pojištění někoho jiného obdržíte provizi ve výši blabla % lorem ipsum dolor sit.</p></div>
+            <div>
+                <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Někoho jiného</div>
+                <div><p class="m">Za pojištění někoho jiného obdržíte provizi ve výši blabla % lorem ipsum dolor sit.</p></div>
             </div>
-
         </div>
         <h2 class="footer">© 2014 Top-pojistka.cz, všechna práva vyhrazena</h2>
+        <div id="verzeApp">v0.2</div>
     </div>
 
     <div data-cont-id="prihlaseni" class="mainContent prihlaseni">
@@ -125,43 +125,47 @@
     </div>
 
     <div data-cont-id="kalkulace" class="mainContent kalkulace">
+        <div class="box boxGeneral">
+            <div>
+                <div class="buttonBlue backgBlue fotacek _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Vyfoťte své dokumenty</div>
+                <p class="m">Použijte fotoaparát vašeho telefonu pro vyfocení technického průkazu.</p>
+            </div>
+        </div>
+        <div class="box boxGeneral">
+            <h1 class="mensi line">nebo</h1>
+            <p class="l">Vyplňte formulář</p>
+        </div>
         <div class="boxGeneral">
+            <h1 class="line">Údaje o pojistníkovi</h1>
+            <input placeholder="Jméno a příjmení *"/>
+            <input placeholder="Rodné číslo *"/>
+            <input placeholder="IČ (podnikatel)"/>
+            <input placeholder="Telefon *"/>
+            <input placeholder="E-mail *"/>
+            <input class="last" placeholder="PSČ *"/>
             <h1 class="line">Údaje o vozidle</h1>
             <input placeholder="Objem válců *"/>
             <input placeholder="Výkon (kW) *"/>
-            <h1>Pole označená * jsou povinná</h1>
+            <h1 class="s">Pole označená * jsou povinná</h1>
             <div class="roundedOne">
-                <input type="checkbox" value="None" id="roundedOne" name="check" />
+                <input class="_souhlasPodminek" type="checkbox" value="None" id="roundedOne" name="check" />
                 <label for="roundedOne"></label>
             </div>
             <h1 class="checkBoxLb">Souhlasím se zpracováním osobních údajů</h1>
-            <div class="buttonBlue backgGrey _buttonClick buttonOpacity" data-click="showWindow('nahravam')">Odeslat</div>
+            <div class="_souhlasPodminek buttonBlue _buttonClick buttonDisable backgGrey buttonOpacity" data-click="showWindow('nahravam')">Odeslat</div>
         </div>
     </div>
 
     <div data-cont-id="nahravam" class="mainContent nahravam">
         <div class="boxGeneral">
             <div class="spinner"><div></div></div>
-            <h1>Vyčkejte prosím</h1>
-            <p>Náš operátor pro vás zpracovává nabídky pojištění, pokud bude aplikace ukončena, výsledek vám přijde na zadaný e-mail.</p>
+            <h1 class="xx">Vyčkejte prosím...</h1>
+            <p class="l">Náš operátor pro vás zpracovává nabídky pojištění, pokud bude aplikace ukončena, výsledek vám přijde na zadaný e-mail.</p>
         </div>
     </div>
 
     <div data-cont-id="nabidky" class="mainContent nabidky">
         <div class="boxGeneral">
-            <div class="nabidkaItem _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
-                <div class="obr">
-                    <img src="img/Allianz.png">
-                </div><!--
-             --><div class="popis">
-                <p>Asistenční služba Připojišění skel</p>
-                <h1>9 999 Kč</h1>
-            </div><!--
-         --><div class="button">
-                <img src="img/more.png">
-                <h1 class="_buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">Více</h1>
-            </div>
-            </div>
             <div class="nabidkaItem">
                 <div class="obr">
                     <img src="img/Allianz.png">
@@ -170,7 +174,7 @@
                 <p>Asistenční služba Připojišění skel</p>
                 <h1>9 999 Kč</h1>
             </div><!--
-         --><div class="button">
+         --><div class="button _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
                 <img src="img/more.png">
                 <h1>Více</h1>
             </div>
@@ -183,7 +187,7 @@
                 <p>Asistenční služba Připojišění skel</p>
                 <h1>9 999 Kč</h1>
             </div><!--
-         --><div class="button">
+         --><div class="button _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
                 <img src="img/more.png">
                 <h1>Více</h1>
             </div>
@@ -196,7 +200,20 @@
                 <p>Asistenční služba Připojišění skel</p>
                 <h1>9 999 Kč</h1>
             </div><!--
-         --><div class="button">
+         --><div class="button _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
+                <img src="img/more.png">
+                <h1>Více</h1>
+            </div>
+            </div>
+            <div class="nabidkaItem">
+                <div class="obr">
+                    <img src="img/Allianz.png">
+                </div><!--
+             --><div class="popis">
+                <p>Asistenční služba Připojišění skel</p>
+                <h1>9 999 Kč</h1>
+            </div><!--
+         --><div class="button _buttonClick buttonOpacity" data-click="showWindow('podrobnosti')">
                 <img src="img/more.png">
                 <h1>Více</h1>
             </div>
@@ -312,6 +329,7 @@
 
         </div>
     </div>
+
 
     <div data-cont-id="podrobnosti" class="mainContent podrobnosti">
         <div class="boxGeneral">
@@ -336,51 +354,231 @@
                 <div class="par">
                     <h3>Připojištění skel:</h3><h4></h4>
                 </div>
-                <select>
+                <select class="standard">
                     <option selected="selected">Zvolte částku</option>
                     <option>10 000 Kč</option>
                     <option>12 000 Kč</option>
                 </select>
             </div>
-            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove')">Chci toto pojištění</div>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove1')">Chci toto pojištění</div>
             <p>Před dokončením objednávky budete
                 v několika krocích vyzváni k doplnění
                 vašich údajů</p>
         </div>
     </div>
 
-    <div data-cont-id="doplnkove" class="mainContent doplnkove">
+    <div data-cont-id="doplnkove1" class="mainContent kalkulace">
+        <div class="box boxGeneral">
+            <div>
+                <div class="buttonBlue backgBlue fotacek _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Vyfoťte své dokumenty</div>
+                <p class="m">Použijte fotoaparát vašeho telefonu pro vyfocení technického průkazu.</p>
+            </div>
+        </div>
+        <div class="box boxGeneral">
+            <h1 class="mensi line">nebo</h1>
+            <p class="l">Vyplňte formulář</p>
+        </div>
         <div class="boxGeneral">
-            <h1 class="line"><span>Rekapitulace</span></h1>
-            <h2>Tovární značka:</h2><span>Škoda</span><br>
-            <h2>Typ vozidla:</h2><span>Octavia</span><br>
-            <h2>Číslo VTP:</h2><span>876587645</span><br>
-            <h2>RZ:</h2><span>4A4 6538</span><br>
-            <h2>VIN:</h2><span>VIN86543</span><br>
-            <h2>Objem válců kW:</h2><span>132</span><br>
-            <h2>Rok výroby:</h2><span>2012</span><br>
-            <h2>Palivo</h2><span>Benzín</span><br>
-            <br><br>
-            <h2>Jméno</h2><span>Tomáš</span><br>
-            <h2>Příjmení</h2><span>Novák</span><br>
-            <h2>Rodné číslo</h2><span>880415/2467</span><br>
-            <h2>Ulice nebo místo</h2><span>Kournní</span><br>
-            <h3>Krok 5/5</h3>
+            <h1 class="line">Doplňkové data o vozidle</h1>
+            <input placeholder="Tovární značka *"/>
+            <input placeholder="Typ vozidla *"/>
+            <input placeholder="Číslo VTP *"/>
+            <input placeholder="RZ *"/>
+            <input placeholder="VIN *"/>
+            <input placeholder="Objem válců *"/>
+            <input placeholder="Výkon (kW) *"/>
+            <input placeholder="Rok výroby *"/>
+            <input class="last" placeholder="Palivo *"/>
+            <h1 class="s">Pole označená * jsou povinná</h1>
+            <div>
+                <div class="circleProgress backSeda"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+            </div>
+            <h1 class="m progressText">Krok 1/5</h1>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove2')">Další krok</div>
+        </div>
+    </div>
+
+
+    <div data-cont-id="doplnkove2" class="mainContent kalkulace">
+        <div class="box boxGeneral">
+            <div>
+                <div class="buttonBlue backgBlue fotacek _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Vyfoťte své dokumenty</div>
+                <p class="m">Použijte fotoaparát vašeho telefonu pro vyfocení technického průkazu.</p>
+            </div>
+        </div>
+        <div class="box boxGeneral">
+            <h1 class="mensi line">nebo</h1>
+            <p class="l">Vyplňte formulář</p>
+        </div>
+        <div class="boxGeneral">
+            <h1 class="line">Doplňkové data o pojistníkovi</h1>
+            <input placeholder="Jméno *"/>
+            <input placeholder="Příjmení *"/>
+            <input placeholder="Rodné číslo *"/>
+            <input placeholder="Ulice nebo místo *"/>
+            <input placeholder="Číslo popisné *"/>
+            <input placeholder="Město nebo obec *"/>
+            <input placeholder="PSČ *"/>
+            <input placeholder="Telefoní číslo *"/>
+            <input class="last" placeholder="E-mail *"/>
+            <h1 class="s">Pole označená * jsou povinná</h1>
+            <div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backSeda"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+            </div>
+            <h1 class="m progressText">Krok 2/5</h1>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove3')">Další krok</div>
+        </div>
+    </div>
+
+
+    <div data-cont-id="doplnkove3" class="mainContent kalkulace">
+        <div class="boxGeneral">
+
+            <div class="boxDoplnek">
+                <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Vlastník vozidla</h1><h1 class="m">je stejný jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
+            </div>
+            <div class="vlastnik">
+                <p class="l">Vyplňte formulář</p>
+                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <input placeholder="Jméno *"/>
+                <input placeholder="Příjmení *"/>
+                <input placeholder="Rodné číslo *"/>
+                <input placeholder="Ulice nebo místo *"/>
+                <input placeholder="Číslo popisné *"/>
+                <input placeholder="Město nebo obec *"/>
+                <input placeholder="PSČ *"/>
+                <input placeholder="Telefoní číslo *"/>
+                <input placeholder="E-mail *"/>
+            </div>
+
+            <div class="boxDoplnek">
+                <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Provozovatel vozidla</h1><h1 class="m">je stejný jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
+            </div>
+            <div class="provozovatel">
+                <p class="l">Vyplňte formulář</p>
+                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <input placeholder="Jméno *"/>
+                <input placeholder="Příjmení *"/>
+                <input placeholder="Rodné číslo *"/>
+                <input placeholder="Ulice nebo místo *"/>
+                <input placeholder="Číslo popisné *"/>
+                <input placeholder="Město nebo obec *"/>
+                <input placeholder="PSČ *"/>
+                <input placeholder="Telefoní číslo *"/>
+                <input placeholder="E-mail *"/>
+            </div>
+
+            <div class="boxDoplnek">
+                <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Korespondenční adresa</h1><h1 class="m">je stejná jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
+            </div>
+            <div class="korespondent">
+                <p class="l">Vyplňte formulář</p>
+                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <input placeholder="Jméno *"/>
+                <input placeholder="Příjmení *"/>
+                <input placeholder="Rodné číslo *"/>
+                <input placeholder="Ulice nebo místo *"/>
+                <input placeholder="Číslo popisné *"/>
+                <input placeholder="Město nebo obec *"/>
+                <input placeholder="PSČ *"/>
+                <input placeholder="Telefoní číslo *"/>
+                <input placeholder="E-mail *"/>
+            </div>
+
+            <div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backSeda"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+            </div>
+            <h1 class="m progressText">Krok 3/5</h1>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('doplnkove4')">Další krok</div>
+        </div>
+    </div>
+
+    <div data-cont-id="doplnkove4" class="mainContent kalkulace">
+        <div class="box boxGeneral">
+            <h1 class="line l">Datum počátku pojištění</h1>
+            <input id="datumPocatku" onfocus="dateZacatek(this)" placeholder="16.5.2014"/>
+            <h1 class="line l">Frekvence plateb</h1>
+            <select class="standard">
+                <option selected="selected">Roční</option>
+                <option>Půlroční</option>
+                <option>Čtvrtletní</option>
+                <option>Měsíční</option>
+            </select>
+            <div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backSeda"></div>
+                <div class="circleProgress backWhite"></div>
+            </div>
+            <h1 class="m progressText">Krok 4/5</h1>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('rekapitulace')">Další krok</div>
+
+        </div>
+    </div>
+
+
+
+    <div data-cont-id="rekapitulace" class="mainContent doplnkove rekapitulace">
+        <div class="boxGeneral">
+            <div>
+                <h1 class="line"><span>Rekapitulace</span></h1>
+                <h2>Tovární značka:&nbsp;</h2><span>Škoda</span><br>
+                <h2>Typ vozidla:&nbsp;</h2><span>Octavia</span><br>
+                <h2>Číslo VTP:&nbsp;</h2><span>876587645</span><br>
+                <h2>RZ:&nbsp;</h2><span>4A4 6538</span><br>
+                <h2>VIN:&nbsp;</h2><span>VIN86543</span><br>
+                <h2>Objem válců kW:&nbsp;</h2><span>132</span><br>
+                <h2>Rok výroby:&nbsp;</h2><span>2012</span><br>
+                <h2>Palivo:&nbsp;</h2><span>Benzín</span><br>
+                <br><br>
+                <h2>Jméno:&nbsp;</h2><span>Tomáš</span><br>
+                <h2>Příjmení:&nbsp;</h2><span>Novák</span><br>
+                <h2>Rodné číslo:&nbsp;</h2><span>880415/2467</span><br>
+                <h2>Ulice nebo místo:&nbsp;</h2><span>Kournní</span><br>
+                <h2>Číslo popisné:&nbsp;</h2><span>954/43</span><br>
+                <h2>Město nebo obec:&nbsp;</h2><span>Praha 2</span><br>
+                <h2>PSČ:&nbsp;</h2><span>12000</span><br>
+                <h2>Telefonní číslo:&nbsp;</h2><span>+420777354738</span><br>
+                <h2>E-mail:&nbsp;</h2><span>tomas.novak88@gmail.com</span><br>
+            </div>
+            <div class="progressBoxModifi">
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backWhite"></div>
+                <div class="circleProgress backSeda"></div>
+            </div>
+            <h1 class="m progressText textAlignCenter">Krok 5/5</h1>
             <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('dekujeme')">Závazně objednávám</div>
         </div>
     </div>
 
-<div data-cont-id="dekujeme" class="mainContent dekujeme">
-    <div class="boxGeneral">
-        <img src="img/iPovKolo240.png" onclick="showWindow('index')">
-        <h1>Děkujeme</h1>
-        <h2>Náš operátor vás bude brzy kontaktovat.</h2>
-        <h3>Sdílet s přáteli:</h3>
-        <img src="img/fb.png">
-    </div>
-</div>
 
-<div id="verzeApp">0.1</div>
+
+    <div data-cont-id="dekujeme" class="mainContent dekujeme">
+        <div class="boxGeneral">
+            <img src="img/iPovKolo240.png" onclick="showWindow('index')">
+            <h1 class="xxx bold">Děkujeme</h1>
+            <h1 class="l">Náš operátor vás bude brzy kontaktovat.</h1>
+            <h1 class="m">Sdílet s přáteli:</h1>
+            <img src="img/fb.png">
+        </div>
+    </div>
+
+
 </div>
 </body>
 </html>

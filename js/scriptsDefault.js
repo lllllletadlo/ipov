@@ -11,7 +11,7 @@ function scripDefaultInit() {
     transitionInit();
 
     // set clicks function on buttons, touch or click
-    clickInit();
+    clickInitDef();
 
     // load variable from localStore and set data it in pages
     dataManagerLoad();
@@ -21,7 +21,7 @@ function scripDefaultInit() {
 
 }
 
-function clickInit()
+function clickInitDef()
 {
 
     var $buttons;
@@ -51,7 +51,7 @@ function clickInit()
         },150);
     });
 
-
+    clickInit();
 }
 
 function dataManagerLoad()
