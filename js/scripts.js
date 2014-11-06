@@ -1,6 +1,10 @@
+var pictureSource;   // picture source
+var destinationType; // sets the format of returned value
 var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
+
+
 var pageSys = {
     pageBackArr:[],
     pageBack:"",
@@ -48,6 +52,7 @@ function onDeviceReady() {
     //showWindow("doplnkove4"); // datumy
     //showWindow("rekapitulace");
     //showWindow("dekujeme");
+    //showWindow("photoImage");
 
 
 
@@ -175,6 +180,14 @@ function showWindow(windowName)
 
     hideAll();
 
+    if(pageCurrent == "photoImage" && windowName !="photoImage")
+    {
+        $("#photoAgain").css("display","none");
+        $("#photoOk").css("display","none");
+        $(".mainTop h1").css("display","block");
+    }
+
+    pageCurrent = windowName;
 
 
     if(windowName=="index")
@@ -257,6 +270,15 @@ function showWindow(windowName)
         topTex("Děkujeme");
         containerVisibilitySet("dekujeme",true);
     }
+    if(windowName=="photoImage")
+    {
+        containerVisibilitySet("photoImage",true);
+        $("#photoAgain").css("display","inline-block");
+        $("#photoOk").css("display","inline-block");
+        $(".mainTop h1").css("display","none");
+        containerVisibilitySet("backButton",true);
+        return;
+    }
 
     // add current page to page history
     if(windowName=="index"){
@@ -286,4 +308,47 @@ function pojistit(koho)
 function prihlasit()
 {
     showWindow("prihlaseni");
+}
+
+function supportDetect()
+{
+    if(navigator.camera== null) return;
+    pictureSource=navigator.camera.PictureSourceType;
+    destinationType=navigator.camera.DestinationType;
+}
+
+function vyfot()
+{
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+        destinationType: destinationType.DATA_URL });
+
+
+}
+
+
+
+function onPhotoDataSuccess(imageData) {
+    // Uncomment to view the base64 encoded image data
+    // console.log(imageData);
+
+    // Get image handle
+    //
+    var smallImage = document.getElementById('smallImage');
+
+    // Unhide image elements
+    //
+    smallImage.style.display = 'block';
+
+    // Show the captured photo
+    // The inline CSS rules are used to resize the image
+    //
+    smallImage.src = "data:image/jpeg;base64," + imageData;
+
+    showWindow('photoImage')
+}
+
+
+
+function onFail(message) {
+    alert('Failed because: ' + message);
 }

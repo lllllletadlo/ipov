@@ -17,6 +17,11 @@ h1, h2, h3, h4 {
     font-weight: normal;
 }
 
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
 ul {
     list-style-type: none;
     padding: 0px;
@@ -129,6 +134,9 @@ input[type=button]:active {
 .main div.mainContent {
     position: absolute;
     width: 100%;
+    height: 90%;
+    top: 10%;
+    overflow: scroll;
 }
 
 #verzeApp {
@@ -199,6 +207,7 @@ h1.xxx {
     display: table-cell;
     line-height: 0em;
     vertical-align: middle;
+    border-spacing: 0;
 }
 .buttonBlue {
     text-align: center;
@@ -246,32 +255,35 @@ h1.line:after {
 }
 
 /*--------------------- top*/
+
 .mainTop {
-    position: fixed;
+    position: absolute;
     width: 100%;
+    height: 10.1%;
     z-index: 100;
+
 }
 .mainTop img {
-    position: absolute;
-    top: 1em;
-    left: 1em;
-    padding: 1em;
+    margin-left: 2em;
+    vertical-align: middle;
 }
 .mainTop h1{
     color: white;
     text-align: center;
-    line-height: 2.9em;
+    line-height: 0em;
     font-size: 2em;
+    top: 50%;
+    position: absolute;
+    width: 100%;
 }
-
+#photoOk, #photoAgain {
+    display: none;
+}
 
 
 /*--------------------- content*/
 
 /*------ global*/
-div.mainContent {
-    margin-top: 5.8em;
-}
 
 .mainContent .boxGeneral {
     margin: 0 5%;
@@ -595,6 +607,23 @@ div.mainContent.index {
     line-height: 1em;
     margin-bottom: 1.5em;
 }
+
+
+#photoOk, #photoAgain {
+    padding: 0 1em;
+    margin-left: 1em;
+    display: inline-block;
+    vertical-align: middle;
+    display: none;
+}
+
+
+
+
+
+
+
+
 
 .circleProgress
 {

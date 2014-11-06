@@ -5,7 +5,7 @@ function scripDefaultInit() {
     // search first page display usually in dataManagerLoad after ajax result
 
     // detect if browser support things we need and set support... variable
-    supportDetect();
+    supportDetectDef();
 
     // by supported aceleration, prepare classes and view
     transitionInit();
@@ -184,7 +184,7 @@ function hideAll()
     containerHideAll();
 }
 
-function supportDetect()
+function supportDetectDef()
 {
     supportedTran = 1;
 
@@ -198,6 +198,8 @@ function supportDetect()
         supportedTran = 3;
         logging("support transition3d",1);
     }
+
+    supportDetect();
 }
 
 function supportsTransitions() {

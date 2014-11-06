@@ -30,6 +30,7 @@
     <gap:plugin name="org.apache.cordova.network-information" />
     <gap:plugin name="org.apache.cordova.statusbar"/>
     <gap:plugin name="com.inazar.datepicker"/>
+    <gap:plugin name="org.apache.cordova.camera"/>
 
 
     <gap:config-file platform="ios" parent="UIStatusBarHidden">

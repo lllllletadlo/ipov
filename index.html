@@ -71,10 +71,17 @@
 
 <!-------------------------------------------------- tops -->
 
-<div class="mainTop backSeda">
-    <img class="_buttonClick buttonOpacity" data-cont-id="backButton" data-click="pageSys.goBack()" src="img/back.png">
-    <h1>Výběr pojištění</h1>
-</div>
+    <div class="mainTop backSeda">
+        <div class="tb">
+            <div class="tbCell">
+                <img class="_buttonClick buttonOpacity" data-cont-id="backButton" data-click="pageSys.goBack()" src="img/back.png">
+                <h1>Výběr pojištění</h1>
+                <div id="photoOk" class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="pageSys.goBack()">OK</div>
+                <div id="photoAgain" class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="vyfot()">Znovu</div>
+            </div>
+        </div>
+    </div>
+
 
 <!-------------------------------------------------- main content -->
     <div data-cont-id="contentIndex" class="mainContent index">
@@ -127,7 +134,7 @@
     <div data-cont-id="kalkulace" class="mainContent kalkulace">
         <div class="box boxGeneral">
             <div>
-                <div class="buttonBlue backgBlue fotacek _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Vyfoťte své dokumenty</div>
+                <div class="buttonBlue backgBlue fotacek _buttonClick buttonOpacity" data-click="pojistit('nekoho')">Vyfoťte své dokumenty1</div>
                 <p class="m">Použijte fotoaparát vašeho telefonu pro vyfocení technického průkazu.</p>
             </div>
         </div>
@@ -576,6 +583,10 @@
             <h1 class="m">Sdílet s přáteli:</h1>
             <img src="img/fb.png">
         </div>
+    </div>
+
+    <div data-cont-id="photoImage" class="mainContent photoImage">
+        <img style="display:none;" id="smallImage" src="img/gabriel.jpg" />
     </div>
 
 
