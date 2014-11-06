@@ -169,7 +169,7 @@ function dateZacatek(el)
 }
 
 
-function showWindow(windowName, par)
+function showWindow(windowName)
 {
     //window.localStorage.setItem("hairSoft-lastWindow",windowName);
 
@@ -268,17 +268,11 @@ function showWindow(windowName, par)
     }
     if(windowName=="photoImage")
     {
-        if(par==true)
-        {
-            vyfot();
-        } else
-        {
-            containerVisibilitySet("photoImage",true);
-            $("#photoAgain").css("display","inline-block");
-            $("#photoOk").css("display","inline-block");
-            $(".mainTop h1").css("display","none");
-            containerVisibilitySet("backButton",true);
-        }
+        containerVisibilitySet("photoImage",true);
+        $("#photoAgain").css("display","inline-block");
+        $("#photoOk").css("display","inline-block");
+        $(".mainTop h1").css("display","none");
+        containerVisibilitySet("backButton",true);
     }
 
     // add current page to page history
@@ -323,7 +317,6 @@ function vyfot()
     navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
         destinationType: destinationType.DATA_URL });
 
-
 }
 
 
@@ -345,6 +338,7 @@ function onPhotoDataSuccess(imageData) {
     //
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
+    showWindow('photoImage',true);
 }
 
 
