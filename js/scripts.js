@@ -126,51 +126,47 @@ function clickInit()
         */
     });
 
-    $(".boxDoplnek ._buttonClick").on("click", function(e){
-
-    });
-
-    function dateZacatek(el)
-    {
-        if (typeof datePicker === 'undefined') {
-            return;
-        }
-
-        if(datePickerOpen)
-        {
-            return;
-        } else
-        {
-            datePickerOpen = true;
-        }
-
-        var options = {
-            date: new Date(),
-            mode: 'date'
-        };
-
-        inputValue = $(el).val();
-        el.blur();
-        datePicker.show(options, function(date){
-            if(date)
-            {
-                datePickerOpen = false;
-                // happend when is cancel button press
-                if(date=="Invalid Date") return;
-
-                // fill date in input
-                var newDate = new Date(date);
-
-
-                el.value = (Number(newDate.getMonth()) + 1) + "/" + newDate.getDate() + "/" + newDate.getFullYear().toString().substr(2,2);
-
-
-            }
-        });
-
-    }
 }
 
+function dateZacatek(el)
+{
+    if (typeof datePicker === 'undefined') {
+        return;
+    }
+
+    if(datePickerOpen)
+    {
+        return;
+    } else
+    {
+        datePickerOpen = true;
+    }
+
+    var options = {
+        date: new Date(),
+        mode: 'date'
+    };
+
+    inputValue = $(el).val();
+    el.blur();
+    datePicker.show(options, function(date){
+        if(date)
+        {
+            datePickerOpen = false;
+            // happend when is cancel button press
+            if(date=="Invalid Date") return;
+
+            // fill date in input
+            var newDate = new Date(date);
+
+
+            el.value = (Number(newDate.getMonth()) + 1) + "/" + newDate.getDate() + "/" + newDate.getFullYear().toString().substr(2,2);
+
+
+        }
+    });
+
+}
 
 
 function showWindow(windowName)
