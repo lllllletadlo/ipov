@@ -160,7 +160,7 @@ function dateZacatek(el)
             var newDate = new Date(date);
 
 
-            el.value = (Number(newDate.getMonth()) + 1) + "/" + newDate.getDate() + "/" + newDate.getFullYear().toString().substr(2,2);
+            el.value = (newDate.getDate() + "." + (Number(newDate.getMonth()) + 1) + "." +  + newDate.getFullYear().toString());
 
 
         }
@@ -169,7 +169,7 @@ function dateZacatek(el)
 }
 
 
-function showWindow(windowName)
+function showWindow(windowName, par)
 {
     //window.localStorage.setItem("hairSoft-lastWindow",windowName);
 
@@ -268,12 +268,17 @@ function showWindow(windowName)
     }
     if(windowName=="photoImage")
     {
-        containerVisibilitySet("photoImage",true);
-        $("#photoAgain").css("display","inline-block");
-        $("#photoOk").css("display","inline-block");
-        $(".mainTop h1").css("display","none");
-        containerVisibilitySet("backButton",true);
-        return;
+        if(par==true)
+        {
+            vyfot();
+        } else
+        {
+            containerVisibilitySet("photoImage",true);
+            $("#photoAgain").css("display","inline-block");
+            $("#photoOk").css("display","inline-block");
+            $(".mainTop h1").css("display","none");
+            containerVisibilitySet("backButton",true);
+        }
     }
 
     // add current page to page history
@@ -340,7 +345,6 @@ function onPhotoDataSuccess(imageData) {
     //
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
-    showWindow('photoImage')
 }
 
 
