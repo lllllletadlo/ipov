@@ -233,8 +233,8 @@ function showWindow(windowName)
     {
         topTex("Nahrávám");
         containerVisibilitySet("nahravam",true);
-        containerVisibilitySet("backButton",true);
-
+        //containerVisibilitySet("backButton",true);
+        pageSys.reset();
         return;
     }
     if(windowName=="nabidky")
