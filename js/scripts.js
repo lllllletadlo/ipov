@@ -360,7 +360,7 @@ function ajaxSendRequest(ID)
 
 
     var options = new FileUploadOptions();
-    options.fileKey = "file";
+    options.fileKey = "client_file";
     var userid = '123456';
     var imagefilename = userid + Number(new Date()) + ".jpg";
     options.fileName = imagefilename;

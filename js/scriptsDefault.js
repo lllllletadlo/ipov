@@ -56,7 +56,7 @@ function clickInitDef()
             {
 
                 var isValid = validator.valideForm(validateFormID);
-                if(!isValid) return;
+                //if(!isValid) return;
             }
 
             // run onclick function
