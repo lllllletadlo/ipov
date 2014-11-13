@@ -361,38 +361,30 @@ function ajaxSendRequest(ID)
 
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
-    options.mimeType = "image/jpg";
     options.name = "client_file";
-    var imagefilename = Number(new Date()) + ".jpg";
+    var userid = '123456';
+    var imagefilename = userid + Number(new Date()) + ".jpg";
     options.fileName = imagefilename;
+    options.mimeType = "image/jpg";
+
 
     var params = {};
     params.imageURI = imgUri;
-
-
-
-    params.client_name = $(".kalkulace input[name=client_name]").val();
-    params.client_personalnumber = $(".kalkulace input[name=client_personalnumber]").val();
-    params.client_id = $(".kalkulace input[name=client_id]").val();
-    params.client_phone = $(".kalkulace input[name=client_phone]").val();
-    params.client_email = $(".kalkulace input[name=client_email]").val();
-    params.client_zip = $(".kalkulace input[name=client_zip]").val();
-    params.client_car_volume = $(".kalkulace input[name=client_car_volume]").val();
-    params.client_car_power = $(".kalkulace input[name=client_car_power]").val();
-
-
-
-
+    ///params.userid = sessionStorage.loginuserid;
+    params.client_name = "ff";
+    params.agree = "agree";
+    params.order_send = "Odeslat";
     options.params = params;
     options.chunkedMode = false;
 
     var ft = new FileTransfer();
     var clID = guid();
-    window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
 
+    alertG(imgUri);
 
     ft.upload(imgUri, url, win, fail, options, true);
+    alertG("finish upload");
 }
 
 function win(r) {
@@ -400,13 +392,10 @@ function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
-
-    checkStav.start();
-    showWindow("nahravam");
 }
 
 function fail(error) {
-    //alert("error");
+    alert("error");
     alert("An error has occurred: Code = " + error.code);
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
