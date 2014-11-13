@@ -87,7 +87,7 @@ function onDeviceReady() {
     //showWindow("doplnkove4"); // datumy
     //showWindow("rekapitulace");
     //showWindow("dekujeme");
-    //showWindow("photoImage");
+    showWindow("photoImage");
 
 
 
