@@ -356,6 +356,8 @@ function supportDetect()
 
 function ajaxSendRequest()
 {
+    $('.mainContent.nahravam p').html('Nahrávám formulář an server...');
+    showWindow("nahravam");
 
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
@@ -393,10 +395,9 @@ function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
-
+    $('.mainContent.nahravam p').html('Nahráno<br>Čekám na odpověď serveru...');
     window.localStorage.setItem("ipovStav","odeslano");
     checkStav.start();
-    showWindow("nahravam");
 }
 
 function fail(error) {
