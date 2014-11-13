@@ -356,7 +356,19 @@ function supportDetect()
 
 function ajaxSendRequest(ID)
 {
-    alertG("ajaxSendRequest");
+    var win = function (r) {
+        clearCache();
+        retries = 0;
+        alert('Done!');
+    };
+
+    var fail = function (error) {
+
+            alert('Ups. Something wrong happens!');
+
+    };
+
+
     var options = new FileUploadOptions();
     options.fileKey = "file";
     var userid = '123456';
@@ -371,10 +383,12 @@ function ajaxSendRequest(ID)
     params.client_name = "ff";
     options.params = params;
     options.chunkedMode = false;
+    alertG("set transfer");
     var ft = new FileTransfer();
     var url = "http://client.aireworks.eu/ipov/app/customer/";
     alertG("start upload");
-    ft.upload(imageURI, url, win, fail, options, true);
+
+    ft.upload(imgUri, url, win, fail, options, true);
     alertG("finish upload");
 }
 
@@ -515,6 +529,23 @@ function vyfot()
 
 }
 
+function vyfot_ukazka()
+{
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
+        destinationType: destinationType.DATA_URL });
+
+}
+function onPhotoDataSuccess_ukazka(imageData) {
+    showWindow('photoImage',true);
+    var smallImage = document.getElementById('smallImage');
+    smallImage.style.display = 'block';
+    smallImage.src = "data:image/jpeg;base64," + imageData;
+
+    //$(".kalkulace.prvni .fotak").addClass("fotky");
+    fotkaPorizena = true;
+
+}
+
 function photoLupa()
 {
     if($("#photoLupa").html()=="-")
@@ -528,6 +559,7 @@ function photoLupa()
     }
 }
 
+var imgUri;
 
 function onPhotoDataSuccess(imageURI) {
     showWindow('photoImage',true);
@@ -538,17 +570,9 @@ function onPhotoDataSuccess(imageURI) {
     //$(".kalkulace.prvni .fotak").addClass("fotky");
     fotkaPorizena = true;
 
+    imgUri=imageURI;
 }
-function onPhotoDataSuccess_old(imageData) {
-    showWindow('photoImage',true);
-    var smallImage = document.getElementById('smallImage');
-    smallImage.style.display = 'block';
-    smallImage.src = "data:image/jpeg;base64," + imageData;
 
-    //$(".kalkulace.prvni .fotak").addClass("fotky");
-    fotkaPorizena = true;
-
-}
 
 
 
