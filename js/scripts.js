@@ -376,17 +376,20 @@ function ajaxSendRequest(ID)
     options.fileName = imagefilename;
     options.mimeType = "image/jpg";
 
-    alertG("set params");
+;
     var params = {};
     params.imageURI = imgUri;
     ///params.userid = sessionStorage.loginuserid;
     params.client_name = "ff";
+    params.agree = "agree";
+    params.order_send = "Odeslat";
     options.params = params;
     options.chunkedMode = false;
-    alertG("set transfer");
+
     var ft = new FileTransfer();
-    var url = "http://client.aireworks.eu/ipov/app/customer/";
-    alertG("start upload");
+    var clID = guid();
+    var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
+
 
     ft.upload(imgUri, url, win, fail, options, true);
     alertG("finish upload");
