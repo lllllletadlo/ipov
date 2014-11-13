@@ -45,6 +45,18 @@ var pageSys = {
 
 };
 
+var guid = (function() {
+    function s4() {
+        return Math.floor((1 + Math.random()) * 0x10000)
+            .toString(16)
+            .substring(1);
+    }
+    return function() {
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    };
+})();
+
 function onDeviceReady() {
 
     scripDefaultInit();
@@ -59,6 +71,9 @@ function onDeviceReady() {
         }
     }
 
+    //var id = crypto.randomBytes(20).toString('hex');
+    //alert(guid());
+
     showWindow("index");
     //showWindow("prihlaseni");
     //showWindow("registrace");
@@ -72,7 +87,7 @@ function onDeviceReady() {
     //showWindow("doplnkove4"); // datumy
     //showWindow("rekapitulace");
     //showWindow("dekujeme");
-    showWindow("photoImage");
+    //showWindow("photoImage");
 
 
 
@@ -225,6 +240,7 @@ function showWindow(windowName)
     }
     if(windowName=="kalkulace")
     {
+        inputsClearAll($(".kalkulace"));
         topTex("Kalkulace");
         containerVisibilitySet("kalkulace",true);
         containerVisibilitySet("backButton",true);
@@ -289,6 +305,7 @@ function showWindow(windowName)
         containerVisibilitySet("photoImage",true);
         $("#photoAgain").css("display","inline-block");
         $("#photoOk").css("display","inline-block");
+        $("#photoLupa").css("display","inline-block");
         $(".mainTop h1").css("display","none");
         containerVisibilitySet("backButton",true);
     }
@@ -330,16 +347,23 @@ function supportDetect()
     destinationType=navigator.camera.DestinationType;
 }
 
-function ajaxSendRequest()
+
+/**
+ * ajax dotaz na ...
+ * @param ID - ID pozadavku...
+ */
+function ajaxSendRequest(ID)
 {
+    var clID = guid();
     $.ajax({
         type: "POST",
         //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
-        url: "http://client.aireworks.eu/ipov/app/customer",
+        url: "http://client.aireworks.eu/ipov/app/customer?client_id="+clID,
         data : {
             client_name : $(".kalkulace input[name=client_name]").val(),
             client_personalnumber : $(".kalkulace input[name=client_personalnumber]").val(),
             client_id : $(".kalkulace input[name=client_id]").val(),
+            //client_id : clID,
             client_phone : $(".kalkulace input[name=client_phone]").val(),
             client_email : $(".kalkulace input[name=client_email]").val(),
             client_zip : $(".kalkulace input[name=client_zip]").val(),
@@ -353,6 +377,7 @@ function ajaxSendRequest()
             //alert("succes");
             //console.log(data);
             window.localStorage.setItem("ipovStav","odeslano");
+            window.localStorage.setItem("ipovclID",clID);
             checkStav.start();
             showWindow("nahravam");
         },
@@ -362,10 +387,11 @@ function ajaxSendRequest()
 
 function ajaxCheckStav()
 {
+    var clID = window.localStorage.getItem("ipovclID");
     $.ajax({
         type: "GET",
         //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
-        url: "http://client.aireworks.eu/ipov/app/customer/action/checkdb",
+        url: "http://client.aireworks.eu/ipov/app/customer/action/checkdb?client_id="+clID,
         dataType: 'json',
         success : function(data) {
             if(data == false) {
@@ -436,6 +462,13 @@ function ajaxErrorHandler(data) {
     }
 }
 
+function inputsClearAll(el)
+{
+    $(el).find("input").val("");
+}
+
+
+
 function reset()
 {
     window.localStorage.setItem("ipovStav","reset");
@@ -454,6 +487,21 @@ function vyfot()
     navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
         destinationType: destinationType.DATA_URL });
 
+}
+
+function photoLupa()
+{
+    if($("#photoLupa").html()=="-")
+    {
+        $("#photoLupa").html("+");
+        $("#smallImage").css("width","100%");
+        $("#smallImage").css("height","100%");
+    } else
+    {
+        $("#photoLupa").html("-");
+        $("#smallImage").css("width","initial");
+        $("#smallImage").css("height","initial");
+    }
 }
 
 
