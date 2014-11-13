@@ -363,7 +363,7 @@ function ajaxSendRequest(ID)
     options.fileKey = "client_file";
     options.mimeType = "image/jpg";
     options.name = "client_file";
-    var imagefilename = userid + Number(new Date()) + ".jpg";
+    var imagefilename = Number(new Date()) + ".jpg";
     options.fileName = imagefilename;
 
     var params = {};
