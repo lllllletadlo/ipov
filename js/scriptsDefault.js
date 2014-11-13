@@ -30,6 +30,7 @@ function clickInitDef()
     // ------------- buttons needs click (scrollable or...)
     $buttons = $('._buttonClick');
 
+    // !!! on iPhone it fires twice with that way:
     //$buttons.on("click", function(e){
     $buttons.off('click').on('click', function(e){
         e.stopPropagation();
