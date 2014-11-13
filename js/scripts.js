@@ -3,6 +3,7 @@ var destinationType; // sets the format of returned value
 var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
+var fotkaPorizena = false;
 
 var checkStav = {
     stav:"",
@@ -242,7 +243,11 @@ function showWindow(windowName)
     if(windowName=="kalkulace")
     {
         inputsClearAll($(".kalkulace"));
-        $(".kalkulace.prvni .fotak").removeClass("fotky");
+        if(fotkaPorizena)
+            $(".kalkulace.prvni .fotak").addClass("fotky");
+        else
+            $(".kalkulace.prvni .fotak").removeClass("fotky");
+
         topTex("Kalkulace");
         containerVisibilitySet("kalkulace",true);
         containerVisibilitySet("backButton",true);
@@ -507,14 +512,14 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageData) {
-
+    showWindow('photoImage',true);
     var smallImage = document.getElementById('smallImage');
     smallImage.style.display = 'block';
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
-    $(".kalkulace.prvni .fotak").addClass("fotky");
+    //$(".kalkulace.prvni .fotak").addClass("fotky");
+    fotkaPorizena = true;
 
-    showWindow('photoImage',true);
 }
 
 
