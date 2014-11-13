@@ -362,9 +362,14 @@ function ajaxSendRequest(ID)
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
     options.mimeType = "image/jpg";
-
+    options.name = "client_file";
+    var imagefilename = userid + Number(new Date()) + ".jpg";
+    options.fileName = imagefilename;
 
     var params = {};
+    params.imageURI = imgUri;
+
+
 
     params.client_name = $(".kalkulace input[name=client_name]").val();
     params.client_personalnumber = $(".kalkulace input[name=client_personalnumber]").val();
@@ -386,10 +391,8 @@ function ajaxSendRequest(ID)
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
 
-    alertG(imgUri);
 
     ft.upload(imgUri, url, win, fail, options, true);
-    alertG("finish upload");
 }
 
 function win(r) {
