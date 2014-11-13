@@ -60,6 +60,7 @@ function clickInitDef()
             // run onclick function
             if(dataClick!= null)
             {
+                alert("click");
                 eval(dataClick);
             }
         },150);
