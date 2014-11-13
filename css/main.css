@@ -108,6 +108,7 @@ input[type=button]:active {
     width: 100%;
     text-align: center;
     color: #ffffff;
+    font-size: 4em;
 }
 .symbolLoading {
     position: absolute;

@@ -77,7 +77,7 @@ function onDeviceReady() {
     showWindow("index");
     //showWindow("prihlaseni");
     //showWindow("registrace");
-    showWindow("kalkulace");
+    //showWindow("kalkulace");
     //showWindow("nahravam");
     //showWindow("nabidky");
     //showWindow("podrobnosti");
