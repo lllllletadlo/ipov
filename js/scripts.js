@@ -401,8 +401,8 @@ function win(r) {
 }
 
 function fail(error) {
-    alert("error");
-    alert("An error has occurred: Code = " + error.code);
+    alertG(error.code,"Chyba!");
+    showWindow("kalkulace");
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
 }
