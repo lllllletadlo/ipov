@@ -32,6 +32,7 @@ function clickInitDef()
 
     $buttons.on("click", function(e){
         e.stopPropagation();
+        e.preventDefault();
         if($(this).hasClass("buttonDisable"))
             return;
         if($(this).hasClass("buttonOpacity"))
