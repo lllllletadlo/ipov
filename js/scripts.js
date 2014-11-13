@@ -362,18 +362,24 @@ function ajaxSendRequest(ID)
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
     options.name = "client_file";
-    var userid = '123456';
-    var imagefilename = userid + Number(new Date()) + ".jpg";
-    options.fileName = imagefilename;
+
+    options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
 
 
     var params = {};
-    params.imageURI = imgUri;
-    ///params.userid = sessionStorage.loginuserid;
-    params.client_name = "ff";
+    params.client_name = $(".kalkulace input[name=client_name]").val();
+    params.client_personalnumber = $(".kalkulace input[name=client_personalnumber]").val();
+    params.client_id = $(".kalkulace input[name=client_id]").val();
+    params.client_phone = $(".kalkulace input[name=client_phone]").val();
+    params.client_email = $(".kalkulace input[name=client_email]").val();
+    params.client_zip = $(".kalkulace input[name=client_zip]").val();
+    params.client_car_volume = $(".kalkulace input[name=client_car_volume]").val();
+    params.client_car_power = $(".kalkulace input[name=client_car_power]").val();
     params.agree = "agree";
     params.order_send = "Odeslat";
+
+
     options.params = params;
     options.chunkedMode = false;
 
@@ -381,14 +387,13 @@ function ajaxSendRequest(ID)
     var clID = guid();
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
 
-    alertG(imgUri);
+
 
     ft.upload(imgUri, url, win, fail, options, true);
-    alertG("finish upload");
+
 }
 
 function win(r) {
-    alert("win");
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
