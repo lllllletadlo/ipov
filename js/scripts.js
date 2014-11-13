@@ -72,7 +72,7 @@ function onDeviceReady() {
     //showWindow("doplnkove4"); // datumy
     //showWindow("rekapitulace");
     //showWindow("dekujeme");
-    //showWindow("photoImage");
+    showWindow("photoImage");
 
 
 
@@ -337,9 +337,14 @@ function ajaxSendRequest()
         //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
         url: "http://client.aireworks.eu/ipov/app/customer",
         data : {
-            client_name : "m1",
-            client_personalnumber : "1",
-            client_id : "30",
+            client_name : $(".kalkulace input[name=client_name]").val(),
+            client_personalnumber : $(".kalkulace input[name=client_personalnumber]").val(),
+            client_id : $(".kalkulace input[name=client_id]").val(),
+            client_phone : $(".kalkulace input[name=client_phone]").val(),
+            client_email : $(".kalkulace input[name=client_email]").val(),
+            client_zip : $(".kalkulace input[name=client_zip]").val(),
+            client_car_volume : $(".kalkulace input[name=client_car_volume]").val(),
+            client_car_power : $(".kalkulace input[name=client_car_power]").val(),
             agree: "agree",
             order_send: "Odeslat"
 
@@ -436,6 +441,7 @@ function reset()
     window.localStorage.setItem("ipovStav","reset");
     delete_cookie();
     showWindow("index");
+    checkStav.stop();
 }
 function delete_cookie()
 {
@@ -445,7 +451,7 @@ function delete_cookie()
 
 function vyfot()
 {
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50,
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
         destinationType: destinationType.DATA_URL });
 
 }
