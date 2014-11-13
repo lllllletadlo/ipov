@@ -361,10 +361,13 @@ function ajaxSendRequest(ID)
 
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
+    options.name = "client_file";
     var userid = '123456';
     var imagefilename = userid + Number(new Date()) + ".jpg";
     options.fileName = imagefilename;
-    options.mimeType = "image/jpg";
+    //options.mimeType = "image/jpg";
+    options.mimeType = "multipart/form-data";
+
 
 
     var params = {};
