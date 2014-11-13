@@ -215,6 +215,7 @@ function showWindow(windowName)
     {
         $("#photoAgain").css("display","none");
         $("#photoOk").css("display","none");
+        $("#photoLupa").css("display","none");
         $(".mainTop h1").css("display","block");
     }
 
@@ -495,12 +496,10 @@ function photoLupa()
     {
         $("#photoLupa").html("+");
         $("#smallImage").css("width","100%");
-        $("#smallImage").css("height","100%");
     } else
     {
         $("#photoLupa").html("-");
         $("#smallImage").css("width","initial");
-        $("#smallImage").css("height","initial");
     }
 }
 
@@ -529,5 +528,6 @@ function onPhotoDataSuccess(imageData) {
 
 
 function onFail(message) {
-    alert('Failed because: ' + message);
+    alert("Zrušeno");
+    //alert('Failed because: ' + message);
 }
