@@ -525,6 +525,5 @@ function onPhotoDataSuccess(imageData) {
 
 
 function onFail(message) {
-    alert("Zrušeno");
-    //alert('Failed because: ' + message);
+    alertG("Zrušeno");
 }

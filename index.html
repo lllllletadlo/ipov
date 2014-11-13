@@ -25,7 +25,7 @@
 
 <script type="text/javascript">
 
-    var local = true;
+    var local = false;
 
     // hacks
 
@@ -90,7 +90,7 @@
 
         <img src="img/indexPage.png">
         <div class="box boxGeneral">
-            <h1 class="line">Chci pojistit:</h1>
+            <h1 class="line xx">Chci pojistit:</h1>
             <div>
                 <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('kalkulace')">Sebe</div>
                 <div><p class="m">Vyplňte náš formulář a náš operátor vyřídí vaši
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div class="box boxGeneral">
-            <h1 class="mensi line">nebo</h1>
+            <h1 class="mensi line m">nebo</h1>
             <div>
                 <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="showWindow('prihlaseni')">Někoho jiného</div>
                 <div><p class="m">Za pojištění někoho jiného obdržíte provizi ve výši blabla % lorem ipsum dolor sit.</p></div>
@@ -141,33 +141,33 @@
             </div>
         </div>
         <div class="box boxGeneral">
-            <h1 class="mensi line">nebo</h1>
-            <p class="l">Vyplňte formulář</p>
+            <h1 class="m line">nebo</h1>
+            <p class="xx">Vyplňte formulář</p>
         </div>
         <div class="boxGeneral" data-validace-form="1">
-            <h1 class="line">Údaje o pojistníkovi</h1>
+            <h1 class="m line">Údaje o pojistníkovi</h1>
             <input name="client_name" placeholder="Jméno a příjmení *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <input name="client_personalnumber" placeholder="Rodné číslo *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <input name="client_id" placeholder="IČ (podnikatel)"/>
             <input name="client_phone" placeholder="Telefon *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <input name="client_email" placeholder="E-mail *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <input name="client_zip" placeholder="PSČ *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
-            <h1 class="line">Údaje o vozidle</h1>
+            <h3 class="m validateError">Toto pole je povinné</h3>
+            <h1 class="m line">Údaje o vozidle</h1>
             <input name="client_car_volume" placeholder="Objem válců *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <input name="client_car_power" placeholder="Výkon (kW) *" validate="notempty"/>
-            <h3 class="validateError">Toto pole je povinné</h3>
+            <h3 class="m validateError">Toto pole je povinné</h3>
             <h1 class="s">Pole označená * jsou povinná</h1>
             <div class="roundedOne">
                 <input class="_souhlasPodminek" type="checkbox" value="None" id="roundedOne" name="check" />
                 <label for="roundedOne"></label>
             </div>
-            <h1 class="checkBoxLb">Souhlasím se zpracováním osobních údajů</h1>
+            <h1 class="checkBoxLb m">Souhlasím se zpracováním osobních údajů</h1>
             <div class="_souhlasPodminek buttonBlue _buttonClick buttonDisable backgGrey buttonOpacity" data-validace-submitForm="1" data-click="ajaxSendRequest()">Odeslat</div>
         </div>
     </div>
@@ -392,11 +392,11 @@
             </div>
         </div>
         <div class="box boxGeneral">
-            <h1 class="mensi line">nebo</h1>
-            <p class="l">Vyplňte formulář</p>
+            <h1 class="m line">nebo</h1>
+            <p class="xx">Vyplňte formulář</p>
         </div>
         <div class="boxGeneral">
-            <h1 class="line">Doplňkové data o vozidle</h1>
+            <h1 class="m line">Doplňkové data o vozidle</h1>
             <input placeholder="Tovární značka *"/>
             <input placeholder="Typ vozidla *"/>
             <input placeholder="Číslo VTP *"/>
@@ -428,11 +428,11 @@
             </div>
         </div>
         <div class="box boxGeneral">
-            <h1 class="mensi line">nebo</h1>
-            <p class="l">Vyplňte formulář</p>
+            <h1 class="m line">nebo</h1>
+            <p class="xx">Vyplňte formulář</p>
         </div>
         <div class="boxGeneral">
-            <h1 class="line">Doplňkové data o pojistníkovi</h1>
+            <h1 class="m line">Doplňkové data o pojistníkovi</h1>
             <input placeholder="Jméno *"/>
             <input placeholder="Příjmení *"/>
             <input placeholder="Rodné číslo *"/>
@@ -463,8 +463,8 @@
                 <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Vlastník vozidla</h1><h1 class="m">je stejný jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
             </div>
             <div class="vlastnik">
-                <p class="l">Vyplňte formulář</p>
-                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <p class="xx">Vyplňte formulář</p>
+                <h1 class="m line">Doplňkové data o pojistníkovi</h1>
                 <input placeholder="Jméno *"/>
                 <input placeholder="Příjmení *"/>
                 <input placeholder="Rodné číslo *"/>
@@ -480,8 +480,8 @@
                 <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Provozovatel vozidla</h1><h1 class="m">je stejný jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
             </div>
             <div class="provozovatel">
-                <p class="l">Vyplňte formulář</p>
-                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <p class="xx">Vyplňte formulář</p>
+                <h1 class="m line">Doplňkové data o pojistníkovi</h1>
                 <input placeholder="Jméno *"/>
                 <input placeholder="Příjmení *"/>
                 <input placeholder="Rodné číslo *"/>
@@ -497,8 +497,8 @@
                 <div class="popis backWhite"><div class="tb"><div class="tbCell"></div><h1 class="m bold">Korespondenční adresa</h1><h1 class="m">je stejná jako pojistník</h1></div></div><div class="ne backgGrey _buttonClick"><div class="tb"><h1 class="m tbCell">Ne</h1></div></div><div class="ano backgBlue _buttonClick"><div class="tb"><h1 class="m tbCell">Ano</h1></div></div>
             </div>
             <div class="korespondent">
-                <p class="l">Vyplňte formulář</p>
-                <h1 class="line">Doplňkové data o pojistníkovi</h1>
+                <p class="xx">Vyplňte formulář</p>
+                <h1 class="m line">Doplňkové data o pojistníkovi</h1>
                 <input placeholder="Jméno *"/>
                 <input placeholder="Příjmení *"/>
                 <input placeholder="Rodné číslo *"/>
@@ -551,7 +551,7 @@
     <div data-cont-id="rekapitulace" class="mainContent doplnkove rekapitulace">
         <div class="boxGeneral">
             <div>
-                <h1 class="line"><span>Rekapitulace</span></h1>
+                <h1 class="m line"><span>Rekapitulace</span></h1>
                 <h2>Tovární značka:&nbsp;</h2><span>Škoda</span><br>
                 <h2>Typ vozidla:&nbsp;</h2><span>Octavia</span><br>
                 <h2>Číslo VTP:&nbsp;</h2><span>876587645</span><br>
