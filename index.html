@@ -16,10 +16,12 @@
 <link rel="stylesheet" href="css/main.css"/>
 <script type="text/javascript" charset="utf-8" src="js/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="phonegap.js"></script>
+<script type="text/javascript" src="js/validace.js"></script>
 <script type="text/javascript" src="js/inited_utils.js"></script>
 <script type="text/javascript" src="js/scriptsDefault.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 <script type="text/javascript" src="js/fastclick.js"></script>
+
 
 
 <script type="text/javascript">
@@ -103,7 +105,7 @@
             </div>
         </div>
         <h2 class="footer">© 2014 Top-pojistka.cz, všechna práva vyhrazena</h2>
-        <div id="verzeApp">v0.3</div>
+        <div id="verzeApp">v0.4</div>
     </div>
 
     <div data-cont-id="prihlaseni" class="mainContent prihlaseni">
@@ -142,24 +144,31 @@
             <h1 class="mensi line">nebo</h1>
             <p class="l">Vyplňte formulář</p>
         </div>
-        <div class="boxGeneral">
+        <div class="boxGeneral" data-validace-form="1">
             <h1 class="line">Údaje o pojistníkovi</h1>
-            <input placeholder="Jméno a příjmení *"/>
-            <input placeholder="Rodné číslo *"/>
+            <input placeholder="Jméno a příjmení *" validate="notempty" onclick="ajaxSendRequest()"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
+            <input placeholder="Rodné číslo *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
             <input placeholder="IČ (podnikatel)"/>
-            <input placeholder="Telefon *"/>
-            <input placeholder="E-mail *"/>
-            <input class="last" placeholder="PSČ *"/>
+            <input placeholder="Telefon *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
+            <input placeholder="E-mail *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
+            <input placeholder="PSČ *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
             <h1 class="line">Údaje o vozidle</h1>
-            <input placeholder="Objem válců *"/>
-            <input placeholder="Výkon (kW) *"/>
+            <input placeholder="Objem válců *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
+            <input placeholder="Výkon (kW) *" validate="notempty"/>
+            <h3 class="validateError">Toto pole je povinné</h3>
             <h1 class="s">Pole označená * jsou povinná</h1>
             <div class="roundedOne">
                 <input class="_souhlasPodminek" type="checkbox" value="None" id="roundedOne" name="check" />
                 <label for="roundedOne"></label>
             </div>
             <h1 class="checkBoxLb">Souhlasím se zpracováním osobních údajů</h1>
-            <div class="_souhlasPodminek buttonBlue _buttonClick buttonDisable backgGrey buttonOpacity" data-click="showWindow('nahravam')">Odeslat</div>
+            <div class="_souhlasPodminek buttonBlue _buttonClick buttonDisable backgGrey buttonOpacity" data-validace-submitForm="1" data-click="showWindow('nahravam')">Odeslat</div>
         </div>
     </div>
 
@@ -167,7 +176,8 @@
         <div class="boxGeneral">
             <div class="spinner"><div></div></div>
             <h1 class="xx">Vyčkejte prosím...</h1>
-            <p class="l">Náš operátor pro vás zpracovává nabídky pojištění, pokud bude aplikace ukončena, výsledek vám přijde na zadaný e-mail.</p>
+            <p class="l"></p>
+            <div class="buttonBlue backgBlue _buttonClick buttonOpacity" data-click="reset()">Reset</div>
         </div>
     </div>
 

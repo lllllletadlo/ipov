@@ -4,6 +4,17 @@ var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
 
+var checkStav = {
+    stav:"",
+    start : function(){
+       this.stav =  setInterval(function(){
+           ajaxCheckStav();
+       }, 5000);
+    },
+    stop : function(){
+        clearInterval(this.stav);
+    }
+}
 
 var pageSys = {
     pageBackArr:[],
@@ -36,8 +47,17 @@ var pageSys = {
 
 function onDeviceReady() {
 
-
     scripDefaultInit();
+    var stav = window.localStorage.getItem("ipovStav");
+    if(stav!=null)
+    {
+        if(stav == "odeslano")
+        {
+            checkStav.start();
+            showWindow("nahravam");
+            return;
+        }
+    }
 
     showWindow("index");
     //showWindow("prihlaseni");
@@ -214,9 +234,7 @@ function showWindow(windowName)
         topTex("Nahrávám");
         containerVisibilitySet("nahravam",true);
         containerVisibilitySet("backButton",true);
-        setTimeout(function(){
-            showWindow("nabidky");
-        },2500);
+
         return;
     }
     if(windowName=="nabidky")
@@ -311,6 +329,119 @@ function supportDetect()
     pictureSource=navigator.camera.PictureSourceType;
     destinationType=navigator.camera.DestinationType;
 }
+
+function ajaxSendRequest()
+{
+    $.ajax({
+        type: "POST",
+        //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
+        url: "http://client.aireworks.eu/ipov/app/customer",
+        data : {
+            client_name : "m1",
+            client_personalnumber : "1",
+            client_id : "30",
+            agree: "agree",
+            order_send: "Odeslat"
+
+        },
+        success: function(data) {
+            //alert("succes");
+            //console.log(data);
+            window.localStorage.setItem("ipovStav","odeslano");
+            checkStav.start();
+            showWindow("nahravam");
+        },
+        error: ajaxErrorHandler
+    });
+}
+
+function ajaxCheckStav()
+{
+    $.ajax({
+        type: "GET",
+        //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
+        url: "http://client.aireworks.eu/ipov/app/customer/action/checkdb",
+        dataType: 'json',
+        success : function(data) {
+            if(data == false) {
+                //alert("sad");
+                checkStav.stop();
+            }
+            if (data.order_status == 0) {
+                $('.mainContent.nahravam p').html('Náš operátor pro vás zpracovává nabídky pojištění, pokud bude aplikace ukončena, výsledek vám přijde na zadaný e-mail.');
+            }
+            if (data.order_status == 1) {
+                $('.mainContent.nahravam p').html('Operátor převzal Váš požadavek a nyní zpracovává nabídku...');
+            }
+            if (data.order_status == 2) {
+                if (action != 'response') {
+                    window.location = site_url + '/customer/response';
+                }
+                else {
+                    if (data.messages) {
+                        $('#orderresponse').empty();
+                        $.each(data.messages, function (index, value) {
+                            $('#orderresponse').append('<div class="list-group-item">' + value.message_data + '</div>');
+                        });
+                    }
+
+                }
+            }
+        },
+        error: ajaxErrorHandler
+    });
+}
+
+function ajaxErrorHandler(data) {
+    console.log(data);
+
+
+    if(!local)
+    {
+        if(typeof navigator.connection!="undefined")
+        {
+
+            var networkState = navigator.connection.type;
+            if(networkState == Connection.UNKNOWN || networkState== Connection.NONE)
+            {
+                alertG("Nelze se připojit k internetu","Chyba!");
+                return;false
+            }
+        }
+
+    }
+
+    var msg = "";
+    if(typeof data.msg != "undefined")
+    {
+        msg = data.msg;
+    }
+
+    if(typeof data.responseText != "undefined")
+    {
+        msg = data.responseText;
+    }
+
+    if(msg=="")
+    {
+        alertG("Chyba s komunikací se serverem","Chyba!");
+    } else
+    {
+        alertG("chyba:" +data.msg,"Chyba!");
+    }
+}
+
+function reset()
+{
+    window.localStorage.setItem("ipovStav","reset");
+    delete_cookie();
+    showWindow("index");
+}
+function delete_cookie()
+{
+    document.cookie = 'PHPSESSID=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+}
+
 
 function vyfot()
 {

@@ -137,6 +137,7 @@ input[type=button]:active {
     height: 90%;
     top: 10%;
     overflow: scroll;
+    -webkit-overflow-scrolling: touch;
 }
 
 #verzeApp {
@@ -178,7 +179,14 @@ h1.xx {
 h1.xxx {
     font-size: 3em;
 }
-
+h3.validateError {
+    color: red;
+    display: none;
+}
+input.validateError::-webkit-input-placeholder {
+    color: red;
+    border: 2px solid red;
+}
 .bold {
     font-weight: bold;
 }
@@ -297,11 +305,14 @@ h1.line:after {
     font-size: 2em;
     font-weight: normal;
     line-height: 2em;
-    margin: 0 0 0.8em 0;
+    margin: 0.4em 0px 0.4em 0px;
     border: 0px;
 }
 .mainContent .boxGeneral input.last {
-    margin: 0px;
+    margin: 0.4em 0px 0px 0px;
+}
+.mainContent .boxGeneral input.first {
+    margin: 0px 0px 0.4em 0px;
 }
 /*------ other*/
 div.mainContent.index {
@@ -395,7 +406,7 @@ div.mainContent.index {
     margin: 0.5em;
 }
 .mainContent.kalkulace h1 {
-    line-height: 4em;
+    line-height: 3em;
 }
 .mainContent.kalkulace .boxGeneral h1.checkBoxLb {
     display: inline-block;
@@ -413,6 +424,9 @@ div.mainContent.index {
 }
 .mainContent.nahravam p {
     line-height: 1.5em;
+}
+.mainContent.nahravam .buttonBlue {
+    margin-top: 100px;
 }
 
 .mainContent.nabidky .nabidkaItem
@@ -609,6 +623,8 @@ div.mainContent.index {
 }
 
 
+
+
 #photoOk, #photoAgain {
     padding: 0 1em;
     margin-left: 1em;
@@ -737,7 +753,7 @@ div.mainContent.index {
 
 
 
-@media only screen and (min-width: 0px)  and (max-width: 320px) {
+@media only screen and (min-width: 0px)  and (max-width: 400px) {
     body {
         font-size: 8px;
     }

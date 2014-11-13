@@ -1,5 +1,6 @@
 var transitionObject = {};
 
+
 function scripDefaultInit() {
 
     // search first page display usually in dataManagerLoad after ajax result
@@ -18,6 +19,7 @@ function scripDefaultInit() {
 
     // unhide ready app :)
     $(".special.cover").css("display","none");
+
 
 }
 
@@ -39,11 +41,23 @@ function clickInitDef()
         var el= this;
 
         setTimeout(function(){
+            // set button click effect back
             var dataClick = $(el).attr("data-click");
             if($(el).hasClass("buttonOpacity"))
                 $(el).removeClass('highlightOpacity');
             else
                 $(el).removeClass('highlight');
+
+            // is there any validation to proceed?
+            var validateFormID = $(el).attr("data-validace-submitForm");
+            if(validateFormID!= null && validator!=null)
+            {
+
+                var isValid = validator.valideForm(validateFormID);
+                if(!isValid) return;
+            }
+
+            // run onclick function
             if(dataClick!= null)
             {
                 eval(dataClick);
