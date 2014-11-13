@@ -491,9 +491,13 @@ function vyfot()
 
 function photoLupa()
 {
+    alert("photoLupa");
+    alert($("#photoLupa").html());
     if($("#photoLupa").html()=="-")
     {
+        alert("je minus");
         $("#photoLupa").html("+");
+        alert("set plus");
         $("#smallImage").css("width","100%");
         $("#smallImage").css("height","100%");
     } else
