@@ -77,7 +77,7 @@ function onDeviceReady() {
     showWindow("index");
     //showWindow("prihlaseni");
     //showWindow("registrace");
-    //showWindow("kalkulace");
+    showWindow("kalkulace");
     //showWindow("nahravam");
     //showWindow("nabidky");
     //showWindow("podrobnosti");
@@ -242,6 +242,7 @@ function showWindow(windowName)
     if(windowName=="kalkulace")
     {
         inputsClearAll($(".kalkulace"));
+        $(".kalkulace.prvni .fotak").removeClass("fotky");
         topTex("Kalkulace");
         containerVisibilitySet("kalkulace",true);
         containerVisibilitySet("backButton",true);
@@ -506,21 +507,12 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageData) {
-    // Uncomment to view the base64 encoded image data
-    // console.log(imageData);
 
-    // Get image handle
-    //
     var smallImage = document.getElementById('smallImage');
-
-    // Unhide image elements
-    //
     smallImage.style.display = 'block';
-
-    // Show the captured photo
-    // The inline CSS rules are used to resize the image
-    //
     smallImage.src = "data:image/jpeg;base64," + imageData;
+
+    $(".kalkulace.prvni .fotak").addClass("fotky");
 
     showWindow('photoImage',true);
 }

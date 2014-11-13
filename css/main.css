@@ -652,13 +652,75 @@ div.mainContent.index {
 
 
 
+.checkBoxLbaa {
+    background: url(../img/checkOff.png) no-repeat left;
+    background-size: 30px;
+    padding: 0px 37px;
+    min-height: 30px;
+    margin-bottom: 1em;
+}
+
+.fotak.fotky:after {
+    background: url(../img/checkOn.png) no-repeat left;
+    background-size: 28px;
+}
+
+.fotak:before {
+    content: "";
+    background: url(../img/fotak.png) no-repeat left;
+    background-size: 28px;
+    margin: 3px 15px 0px 0px;
+    height: 30px;
+    width: 30px;
+    vertical-align: top;
+    display: inline-block;
+}
+.fotak:after {
+    content: "";
+    margin: 0px 0px 0px 15px;
+    height: 30px;
+    width: 30px;
+    vertical-align: middle;
+    display: inline-block;
+}
+
+
+
 .roundedOne {
     display: inline-block;
+    margin-bottom: 1em;
 }
 .roundedOne input[type="checkbox"] {
     display:none;
 }
 .roundedOne input[type="checkbox"] + label {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+
+    position: relative;
+    background: url(../img/checkOff.png) no-repeat left;
+    background-size: 30px;
+}
+.roundedOne input[type="checkbox"]:checked + label {
+    display: inline-block;
+    vertical-align: middle;
+    width: 32px;
+    height: 32px;
+    position: relative;
+    background: url(../img/checkOn.png) no-repeat left;
+    background-size: 30px;
+}
+
+
+.roundedOne_old {
+    display: inline-block;
+}
+.roundedOne_old input[type="checkbox"] {
+    display:none;
+}
+.roundedOne_old input[type="checkbox"] + label {
     display: inline-block;
     vertical-align: middle;
     width: 32px;
@@ -670,7 +732,7 @@ div.mainContent.index {
     border-radius: 50px;
     position: relative;
 }
-.roundedOne input[type="checkbox"]:checked + label {
+.roundedOne_old input[type="checkbox"]:checked + label {
     display: inline-block;
     vertical-align: middle;
     width: 32px;
