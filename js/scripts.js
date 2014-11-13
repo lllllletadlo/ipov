@@ -354,12 +354,31 @@ function supportDetect()
     destinationType=navigator.camera.DestinationType;
 }
 
-
-/**
- * ajax dotaz na ...
- * @param ID - ID pozadavku...
- */
 function ajaxSendRequest(ID)
+{
+    alertG("ajaxSendRequest");
+    var options = new FileUploadOptions();
+    options.fileKey = "file";
+    var userid = '123456';
+    var imagefilename = userid + Number(new Date()) + ".jpg";
+    options.fileName = imagefilename;
+    options.mimeType = "image/jpg";
+
+    alertG("set params");
+    var params = new Object();
+    params.imageURI = imageURI;
+    params.userid = sessionStorage.loginuserid;
+    params.client_name = "ff";
+    options.params = params;
+    options.chunkedMode = false;
+    var ft = new FileTransfer();
+    var url = "http://client.aireworks.eu/ipov/app/customer/";
+    alertG("start upload");
+    ft.upload(imageURI, url, win, fail, options, true);
+    alertG("finish upload");
+}
+
+function ajaxSendRequest_old(ID)
 {
     var clID = guid();
     $.ajax({
@@ -492,7 +511,7 @@ function delete_cookie()
 function vyfot()
 {
     navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
-        destinationType: destinationType.DATA_URL });
+        destinationType: destinationType.FILE_URI });
 
 }
 
@@ -510,8 +529,17 @@ function photoLupa()
 }
 
 
+function onPhotoDataSuccess(imageURI) {
+    showWindow('photoImage',true);
+    var smallImage = document.getElementById('smallImage');
+    smallImage.style.display = 'block';
+    smallImage.src = imageURI;
 
-function onPhotoDataSuccess(imageData) {
+    //$(".kalkulace.prvni .fotak").addClass("fotky");
+    fotkaPorizena = true;
+
+}
+function onPhotoDataSuccess_old(imageData) {
     showWindow('photoImage',true);
     var smallImage = document.getElementById('smallImage');
     smallImage.style.display = 'block';
