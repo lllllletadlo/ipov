@@ -48,7 +48,7 @@ function alertG(msg,title)
 {
     if(typeof navigator.notification!="undefined")
     {
-        if(title=="") title = "Upozornění!";
+        if(title == undefined) title = "Upozornění!";
 
         navigator.notification.alert(
             msg,  // message
