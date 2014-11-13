@@ -360,14 +360,11 @@ function ajaxSendRequest(ID)
 
 
     var options = new FileUploadOptions();
-
-    var userid = '123456';
-
+    options.fileKey = "client_file";
     options.mimeType = "image/jpg";
 
 
     var params = {};
-
 
     params.client_name = $(".kalkulace input[name=client_name]").val();
     params.client_personalnumber = $(".kalkulace input[name=client_personalnumber]").val();
