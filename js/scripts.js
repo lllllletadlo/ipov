@@ -356,17 +356,7 @@ function supportDetect()
 
 function ajaxSendRequest(ID)
 {
-    var win = function (r) {
-        clearCache();
-        retries = 0;
-        alert('Done!');
-    };
 
-    var fail = function (error) {
-
-            alert('Ups. Something wrong happens!');
-
-    };
 
 
     var options = new FileUploadOptions();
@@ -376,7 +366,7 @@ function ajaxSendRequest(ID)
     options.fileName = imagefilename;
     options.mimeType = "image/jpg";
 
-;
+
     var params = {};
     params.imageURI = imgUri;
     ///params.userid = sessionStorage.loginuserid;
@@ -390,9 +380,24 @@ function ajaxSendRequest(ID)
     var clID = guid();
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
 
+    alertG(imgUri);
 
     ft.upload(imgUri, url, win, fail, options, true);
     alertG("finish upload");
+}
+
+function win(r) {
+    alert("win");
+    console.log("Code = " + r.responseCode);
+    console.log("Response = " + r.response);
+    console.log("Sent = " + r.bytesSent);
+}
+
+function fail(error) {
+    alert("error");
+    alert("An error has occurred: Code = " + error.code);
+    console.log("upload error source " + error.source);
+    console.log("upload error target " + error.target);
 }
 
 function ajaxSendRequest_old(ID)
