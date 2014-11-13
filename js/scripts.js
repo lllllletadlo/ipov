@@ -367,7 +367,7 @@ function ajaxSendRequest(ID)
     alertG("set params");
     var params = new Object();
     params.imageURI = imageURI;
-    params.userid = sessionStorage.loginuserid;
+    ///params.userid = sessionStorage.loginuserid;
     params.client_name = "ff";
     options.params = params;
     options.chunkedMode = false;
