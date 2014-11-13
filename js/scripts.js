@@ -408,6 +408,7 @@ function fail(error) {
 function ajaxSendRequest_old(ID)
 {
     var clID = guid();
+    window.localStorage.setItem("ipovclID",clID);
     $.ajax({
         type: "POST",
         //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
@@ -430,7 +431,6 @@ function ajaxSendRequest_old(ID)
             //alert("succes");
             //console.log(data);
             window.localStorage.setItem("ipovStav","odeslano");
-            window.localStorage.setItem("ipovclID",clID);
             checkStav.start();
             showWindow("nahravam");
         },
