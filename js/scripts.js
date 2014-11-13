@@ -377,8 +377,8 @@ function ajaxSendRequest(ID)
     options.mimeType = "image/jpg";
 
     alertG("set params");
-    var params = new Object();
-    params.imageURI = imageURI;
+    var params = {};
+    params.imageURI = imgUri;
     ///params.userid = sessionStorage.loginuserid;
     params.client_name = "ff";
     options.params = params;
