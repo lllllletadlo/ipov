@@ -30,9 +30,9 @@ function clickInitDef()
     // ------------- buttons needs click (scrollable or...)
     $buttons = $('._buttonClick');
 
-    $buttons.on("click", function(e){
+    //$buttons.on("click", function(e){
+    $buttons.off('click').on('click', function(e){
         e.stopPropagation();
-        e.preventDefault();
         if($(this).hasClass("buttonDisable"))
             return;
         if($(this).hasClass("buttonOpacity"))
