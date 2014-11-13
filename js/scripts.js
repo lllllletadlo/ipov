@@ -382,6 +382,7 @@ function ajaxSendRequest()
 
     var ft = new FileTransfer();
     var clID = guid();
+    window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
 
     ft.upload(imgUri, url, win, fail, options, true);
