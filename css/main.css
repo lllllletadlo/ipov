@@ -329,6 +329,7 @@ div.mainContent.index {
 }
 .mainContent.index img {
     width: 100%;
+    -webkit-transform: scale3d(1,1,1);
 }
 
 .mainContent.index .box h1

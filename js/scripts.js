@@ -15,7 +15,7 @@ var checkStav = {
     stop : function(){
         clearInterval(this.stav);
     }
-}
+};
 
 var pageSys = {
     pageBackArr:[],
@@ -90,12 +90,19 @@ function onDeviceReady() {
     //showWindow("dekujeme");
     //showWindow("photoImage");
 
+    // sent pinchable element
+    //var elementToZoom = document.getElementsByClassName("mainContent index")[0].getElementsByTagName("img")[0];
+    //var elementPinch = document.getElementsByClassName("mainContent index")[0].getElementsByTagName("img")[0];
+
+
+    //var pinch1 = new PinchEl(document.getElementById("smallImage"), document.getElementById("smallImage"));
 
 
 }
 
 function clickInit()
 {
+
     /*
     zaskrtavadlo souhlasim s podminkama
      */
