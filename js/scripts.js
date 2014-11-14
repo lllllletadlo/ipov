@@ -72,8 +72,7 @@ function onDeviceReady() {
         }
     }
 
-    //var id = crypto.randomBytes(20).toString('hex');
-    //alert(guid());
+
 
     showWindow("index");
     //showWindow("prihlaseni");
@@ -90,11 +89,7 @@ function onDeviceReady() {
     //showWindow("dekujeme");
     //showWindow("photoImage");
 
-    // sent pinchable element
-    //var elementToZoom = document.getElementsByClassName("mainContent index")[0].getElementsByTagName("img")[0];
-    //var elementPinch = document.getElementsByClassName("mainContent index")[0].getElementsByTagName("img")[0];
-
-
+    // TODO dopsat pri zvetsovani scale3d se musi zvetsovat i div v kterym to je, aby slo scrollovat
     //var pinch1 = new PinchEl(document.getElementById("smallImage"), document.getElementById("smallImage"));
 
 
