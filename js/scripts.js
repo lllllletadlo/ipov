@@ -369,16 +369,20 @@ function supportDetect()
 
 function ajaxSendRequest()
 {
+    if(imgUri=="") {
+        ajaxSendRequestBezDokumentu();
+        return
+    }
+
     $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
 
     var options = new FileUploadOptions();
 
-    if(imgUri !=""){
-        options.fileKey = "client_file";
-        options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
-        options.mimeType = "image/jpg";
-    }
+    options.fileKey = "client_file";
+    options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
+    options.mimeType = "image/jpg";
+
 
 
 
@@ -405,6 +409,39 @@ function ajaxSendRequest()
 
     ft.upload(imgUri, url, win, fail, options, true);
 
+}
+
+function ajaxSendRequestBezDokumentu()
+{
+    var clID = guid();
+    $.ajax({
+        type: "POST",
+        //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
+        url: "http://client.aireworks.eu/ipov/app/customer?client_id="+clID,
+        data : {
+            client_name : $(".kalkulace input[name=client_name]").val(),
+            client_personalnumber : $(".kalkulace input[name=client_personalnumber]").val(),
+            client_id : $(".kalkulace input[name=client_id]").val(),
+            //client_id : clID,
+            client_phone : $(".kalkulace input[name=client_phone]").val(),
+            client_email : $(".kalkulace input[name=client_email]").val(),
+            client_zip : $(".kalkulace input[name=client_zip]").val(),
+            client_car_volume : $(".kalkulace input[name=client_car_volume]").val(),
+            client_car_power : $(".kalkulace input[name=client_car_power]").val(),
+            agree: "agree",
+            order_send: "Odeslat"
+
+        },
+        success: function(data) {
+            //alert("succes");
+            //console.log(data);
+            window.localStorage.setItem("ipovStav","odeslano");
+            window.localStorage.setItem("ipovclID",clID);
+            checkStav.start();
+            showWindow("nahravam");
+        },
+        error: ajaxErrorHandler
+    });
 }
 
 function win(r) {
