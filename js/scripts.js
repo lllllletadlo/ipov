@@ -5,6 +5,7 @@ var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
 var fotkaPorizena = false;
 var dataZpravy = "";
+var imgUri = "";
 
 var checkStav = {
     stav:"",
@@ -263,6 +264,9 @@ function showWindow(windowName)
         $(".nahravam .boxGeneral h1").html("Vyčkejte prosím...");
         $(".nahravam div.zpravy").html("");
         dataZpravy = "";
+        var smallImage = document.getElementById('smallImage');
+        smallImage.style.display = 'none';
+        imgUri="";
 
         containerVisibilitySet("nahravam",true);
         //containerVisibilitySet("backButton",true);
@@ -365,14 +369,17 @@ function supportDetect()
 
 function ajaxSendRequest()
 {
-    $('.mainContent.nahravam p').html('Nahrávám formulář an server...');
+    $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
 
     var options = new FileUploadOptions();
-    options.fileKey = "client_file";
 
-    options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
-    options.mimeType = "image/jpg";
+    if(imgUri !=""){
+        options.fileKey = "client_file";
+        options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
+        options.mimeType = "image/jpg";
+    }
+
 
 
     var params = {};
@@ -589,7 +596,7 @@ function photoLupa()
     }
 }
 
-var imgUri;
+
 
 function onPhotoDataSuccess(imageURI) {
     showWindow('photoImage',true);
