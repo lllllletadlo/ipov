@@ -224,6 +224,7 @@ function showWindow(windowName)
         $(".mainTop h1").css("display","block");
     }
 
+    var pageBefore = pageCurrent;
     pageCurrent = windowName;
 
 
@@ -246,7 +247,11 @@ function showWindow(windowName)
     }
     if(windowName=="kalkulace")
     {
-        inputsClearAll($(".kalkulace"));
+        if(pageBefore != "photoImage")
+        {
+            inputsClearAll($(".kalkulace"));
+        }
+
         if(fotkaPorizena)
             $(".kalkulace.prvni .fotak").addClass("fotky");
         else
