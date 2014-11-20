@@ -269,8 +269,6 @@ function showWindow(windowName)
         $(".nahravam .boxGeneral h1").html("Vyčkejte prosím...");
         $(".nahravam div.zpravy").html("");
         dataZpravy = "";
-        imgUri="";
-
         containerVisibilitySet("nahravam",true);
         //containerVisibilitySet("backButton",true);
         return;
@@ -386,7 +384,6 @@ function ajaxSendRequest()
     $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
 
-    alert(imgUri);
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
@@ -651,11 +648,9 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageURI) {
-    imgUri=imageURI;
     showWindow("photoImage");
     smallImage.src = imageURI;
-    alert(imgUri);
-
+    imgUri=imageURI;
 }
 
 
