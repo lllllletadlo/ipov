@@ -270,13 +270,10 @@ function showWindow(windowName)
         $(".nahravam .boxGeneral h1").html("Vyčkejte prosím...");
         $(".nahravam div.zpravy").html("");
         dataZpravy = "";
-        var smallImage = document.getElementById('smallImage');
-        smallImage.style.display = 'none';
         imgUri="";
 
         containerVisibilitySet("nahravam",true);
         //containerVisibilitySet("backButton",true);
-        pageSys.reset();
         return;
     }
     if(windowName=="nabidky")
@@ -385,6 +382,7 @@ function ajaxSendRequest()
     $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
     alertG("b");
+    return;
     var options = new FileUploadOptions();
 
     options.fileKey = "client_file";
