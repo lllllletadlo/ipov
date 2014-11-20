@@ -365,23 +365,32 @@ function prihlasit()
 
 function supportDetect()
 {
-    if(navigator.camera== null) return;
-    pictureSource=navigator.camera.PictureSourceType;
-    destinationType=navigator.camera.DestinationType;
+    if(typeof navigator.camera == "undefined")
+    {
+        return;
+    } else
+    {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
 }
 
 function ajaxSendRequest()
 {
-    $('.mainContent.nahravam p').html('Nahrávám formulář an server...');
+    if(imgUri=="") {
+        ajaxSendRequestBezDokumentu();
+        return
+    }
+
+
+    $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
 
+    alert(imgUri);
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
-
-    alert(imgUri);
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
-    alert(imgUri);
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
@@ -398,12 +407,10 @@ function ajaxSendRequest()
 
     options.params = params;
     options.chunkedMode = false;
-
     var ft = new FileTransfer();
     var clID = guid();
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
-
     ft.upload(imgUri, url, win, fail, options, true);
 
 }
@@ -644,9 +651,10 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageURI) {
+    imgUri=imageURI;
     showWindow("photoImage");
     smallImage.src = imageURI;
-    imgUri=imageURI;
+    alert(imgUri);
 
 }
 
