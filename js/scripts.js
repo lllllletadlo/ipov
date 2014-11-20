@@ -250,6 +250,7 @@ function showWindow(windowName)
         if(pageBefore != "photoImage")
         {
             inputsClearAll($(".kalkulace"));
+            $('.roundedOne input').prop('checked', false);
         }
 
         if(imgUri!="")
@@ -589,7 +590,10 @@ function reset()
     window.localStorage.setItem("ipovStav","reset");
     delete_cookie();
     showWindow("index");
+    imgUri = "";
     checkStav.stop();
+    $(zpravyBox).html("")
+        .css("height","5em")
 }
 function delete_cookie()
 {
