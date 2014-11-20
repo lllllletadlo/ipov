@@ -3,15 +3,14 @@ var destinationType; // sets the format of returned value
 var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
-var dataZpravy = "";
-var imgUri = "";
+var fotkaPorizena = false;
 
 var checkStav = {
     stav:"",
     start : function(){
-       this.stav =  setInterval(function(){
-           ajaxCheckStav();
-       }, 5000);
+        this.stav =  setInterval(function(){
+            ajaxCheckStav();
+        }, 5000);
     },
     stop : function(){
         clearInterval(this.stav);
@@ -100,7 +99,7 @@ function clickInit()
 {
 
     /*
-    zaskrtavadlo souhlasim s podminkama
+     zaskrtavadlo souhlasim s podminkama
      */
     $("input._souhlasPodminek").on("click", function(e){
         if($(this).is(':checked'))
@@ -149,20 +148,20 @@ function clickInit()
             $(par).next().css("display","none");
         }
         /*
-        if($(this).hasClass("backgGrey") && $(this).hasClass("ne"))
-        {
-            $(this).removeClass("backgGrey");
-            $(this).addClass("backgBlue");
-            $(this).next().removeClass("backgBlue");
-            $(this).next().addClass("backgGrey");
-        } else
-        {
-            $(this).removeClass("backgBlue");
-            $(this).addClass("backgGrey");
-            $(this).next().removeClass("backgGrey");
-            $(this).next().addClass("backgBlue");
-        }
-        */
+         if($(this).hasClass("backgGrey") && $(this).hasClass("ne"))
+         {
+         $(this).removeClass("backgGrey");
+         $(this).addClass("backgBlue");
+         $(this).next().removeClass("backgBlue");
+         $(this).next().addClass("backgGrey");
+         } else
+         {
+         $(this).removeClass("backgBlue");
+         $(this).addClass("backgGrey");
+         $(this).next().removeClass("backgGrey");
+         $(this).next().addClass("backgBlue");
+         }
+         */
     });
 
 }
@@ -212,7 +211,7 @@ function showWindow(windowName)
 {
     //window.localStorage.setItem("hairSoft-lastWindow",windowName);
 
-    // hide all fields ---- start
+
     hideAll();
 
     if(pageCurrent == "photoImage" && windowName !="photoImage")
@@ -222,9 +221,7 @@ function showWindow(windowName)
         $("#photoLupa").css("display","none");
         $(".mainTop h1").css("display","block");
     }
-    // hide all fields  ------ end
 
-    var pageBefore = pageCurrent;
     pageCurrent = windowName;
 
 
@@ -247,12 +244,8 @@ function showWindow(windowName)
     }
     if(windowName=="kalkulace")
     {
-        if(pageBefore != "photoImage")
-        {
-            inputsClearAll($(".kalkulace"));
-        }
-
-        if(imgUri!="")
+        inputsClearAll($(".kalkulace"));
+        if(fotkaPorizena)
             $(".kalkulace.prvni .fotak").addClass("fotky");
         else
             $(".kalkulace.prvni .fotak").removeClass("fotky");
@@ -264,15 +257,9 @@ function showWindow(windowName)
     if(windowName=="nahravam")
     {
         topTex("Nahrávám");
-
-        // reset previous data
-        $(".nahravam .boxGeneral h1").html("Vyčkejte prosím...");
-        $(".nahravam div.zpravy").html("");
-        dataZpravy = "";
-        imgUri="";
-
         containerVisibilitySet("nahravam",true);
         //containerVisibilitySet("backButton",true);
+        pageSys.reset();
         return;
     }
     if(windowName=="nabidky")
@@ -329,7 +316,6 @@ function showWindow(windowName)
         $("#photoOk").css("display","inline-block");
         $("#photoLupa").css("display","inline-block");
         $(".mainTop h1").css("display","none");
-        $("#smallImage").css("display","block");
         containerVisibilitySet("backButton",true);
     }
 
@@ -372,19 +358,15 @@ function supportDetect()
 
 function ajaxSendRequest()
 {
-    if(imgUri=="") {
-        ajaxSendRequestBezDokumentu();
-        return
-    }
-
-
-    $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
+    $('.mainContent.nahravam p').html('Nahrávám formulář an server...');
     showWindow("nahravam");
 
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
+
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
+
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
@@ -401,45 +383,14 @@ function ajaxSendRequest()
 
     options.params = params;
     options.chunkedMode = false;
+
     var ft = new FileTransfer();
     var clID = guid();
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
+
     ft.upload(imgUri, url, win, fail, options, true);
 
-}
-
-function ajaxSendRequestBezDokumentu()
-{
-    var clID = guid();
-    $.ajax({
-        type: "POST",
-        //url: "http://client.aireworks.eu/ipov/app/customer?client_name=m&client_personalnumber=m&client_id=c&client_phone=d&client_email=e&client_zip=f&client_car_volume=g&client_car_power=h&agree=agree&order_send=Odeslat",
-        url: "http://client.aireworks.eu/ipov/app/customer?client_id="+clID,
-        data : {
-            client_name : $(".kalkulace input[name=client_name]").val(),
-            client_personalnumber : $(".kalkulace input[name=client_personalnumber]").val(),
-            client_id : $(".kalkulace input[name=client_id]").val(),
-            //client_id : clID,
-            client_phone : $(".kalkulace input[name=client_phone]").val(),
-            client_email : $(".kalkulace input[name=client_email]").val(),
-            client_zip : $(".kalkulace input[name=client_zip]").val(),
-            client_car_volume : $(".kalkulace input[name=client_car_volume]").val(),
-            client_car_power : $(".kalkulace input[name=client_car_power]").val(),
-            agree: "agree",
-            order_send: "Odeslat"
-
-        },
-        success: function(data) {
-            //alert("succes");
-            //console.log(data);
-            window.localStorage.setItem("ipovStav","odeslano");
-            window.localStorage.setItem("ipovclID",clID);
-            checkStav.start();
-            showWindow("nahravam");
-        },
-        error: ajaxErrorHandler
-    });
 }
 
 function win(r) {
@@ -452,8 +403,7 @@ function win(r) {
 }
 
 function fail(error) {
-    //alertG(error.code,"Chyba!");
-    alertG("Obrázek nelze nahrát","Chyba!");
+    alertG(error.code,"Chyba!");
     showWindow("kalkulace");
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
@@ -511,24 +461,18 @@ function ajaxCheckStav()
             if (data.order_status == 1) {
                 $('.mainContent.nahravam p').html('Operátor převzal Váš požadavek a nyní zpracovává nabídku...');
             }
-            if (data.order_status == 2 ) {
-                if (data.messages && dataZpravy != JSON.stringify(data.messages)) {
-                    dataZpravy = JSON.stringify(data.messages);
-                    console.log(data.messages);
-                    $(".nahravam .boxGeneral h1").html("Zprávy od operátora");
+            if (data.order_status == 2) {
+                if (action != 'response') {
+                    window.location = site_url + '/customer/response';
+                }
+                else {
+                    if (data.messages) {
+                        $('#orderresponse').empty();
+                        $.each(data.messages, function (index, value) {
+                            $('#orderresponse').append('<div class="list-group-item">' + value.message_data + '</div>');
+                        });
+                    }
 
-                    var zpravyHtml = "";
-                    $.each(data.messages, function (index, value) {
-                        zpravyHtml += '<p class="m">' + value.message_data + '</p>';
-                    });
-
-                    vyska = $("body").height() - $(".nahravam .boxGeneral div.zpravy").offset().top - $(".nahravam .boxGeneral div.buttonBlue").height() - 20;
-                    var zpravyBox = $(".nahravam div.zpravy");
-
-                    $(".nahravam .boxGeneral > p").html("");
-                    $(zpravyBox).html(zpravyHtml)
-                        .css("height",vyska + "px")
-                        .scrollTop(zpravyBox.prop("scrollHeight"));
                 }
             }
         },
@@ -595,23 +539,11 @@ function delete_cookie()
 }
 
 
-
 function vyfot()
 {
-    if(typeof navigator.camera == "undefined")
-    {
-        alertG("Nelze spustit kameru","Chyba");
-        return;
-    }
+    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
+        destinationType: destinationType.FILE_URI });
 
-    if(imgUri=="")
-    {
-        navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
-            destinationType: destinationType.FILE_URI });
-    } else
-    {
-        showWindow("photoImage");
-    }
 }
 
 function vyfot_ukazka()
@@ -621,12 +553,13 @@ function vyfot_ukazka()
 
 }
 function onPhotoDataSuccess_ukazka(imageData) {
-    showWindow('photoImage');
+    showWindow('photoImage',true);
     var smallImage = document.getElementById('smallImage');
+    smallImage.style.display = 'block';
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
     //$(".kalkulace.prvni .fotak").addClass("fotky");
-
+    fotkaPorizena = true;
 
 }
 
@@ -643,13 +576,18 @@ function photoLupa()
     }
 }
 
-
+var imgUri;
 
 function onPhotoDataSuccess(imageURI) {
-    showWindow("photoImage");
+    showWindow('photoImage',true);
+    var smallImage = document.getElementById('smallImage');
+    smallImage.style.display = 'block';
     smallImage.src = imageURI;
-    imgUri=imageURI;
 
+    //$(".kalkulace.prvni .fotak").addClass("fotky");
+    fotkaPorizena = true;
+
+    imgUri=imageURI;
 }
 
 
