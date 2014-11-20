@@ -481,6 +481,8 @@ function ajaxCheckStav()
 
                     vyska = $("body").height() - $(".nahravam .boxGeneral div.zpravy").offset().top - $(".nahravam .boxGeneral div.buttonBlue").height() - 20;
                     var zpravyBox = $(".nahravam div.zpravy");
+
+                    $(".nahravam .boxGeneral > p").html("");
                     $(zpravyBox).html(zpravyHtml)
                         .css("height",vyska + "px")
                         .scrollTop(zpravyBox.prop("scrollHeight"));
