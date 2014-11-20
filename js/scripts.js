@@ -446,17 +446,14 @@ function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
-    alert("gg");
     $('.mainContent.nahravam p').html('Nahráno<br>Čekám na odpověď serveru...');
     window.localStorage.setItem("ipovStav","odeslano");
     checkStav.start();
 }
 
 function fail(error) {
-    alert("gg2");
-
-
-    alertG(error.code,"Chyba!");
+    //alertG(error.code,"Chyba!");
+    alertG("Obrázek nelze nahrát","Chyba!");
     showWindow("kalkulace");
     console.log("upload error source " + error.source);
     console.log("upload error target " + error.target);
@@ -649,9 +646,10 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageURI) {
+    showWindow("photoImage");
     smallImage.src = imageURI;
     imgUri=imageURI;
-    showWindow("photoImage");
+
 }
 
 
