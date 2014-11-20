@@ -651,6 +651,7 @@ function photoLupa()
 function onPhotoDataSuccess(imageURI) {
     smallImage.src = imageURI;
     imgUri=imageURI;
+    showWindow("photoImage");
 }
 
 
