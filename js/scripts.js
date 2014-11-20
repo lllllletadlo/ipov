@@ -592,8 +592,14 @@ function reset()
     showWindow("index");
     imgUri = "";
     checkStav.stop();
-    $(zpravyBox).html("")
-        .css("height","5em")
+    $(".nahravam div.zpravy").html("")
+        .css("height","5em");
+
+    // checkbox disable
+    $('.roundedOne input').prop('checked', false);
+    $(".buttonBlue._souhlasPodminek").addClass("backgGrey");
+    $(".buttonBlue._souhlasPodminek").removeClass("backgBlue");
+    $(".buttonBlue._souhlasPodminek").addClass("buttonDisable");
 }
 function delete_cookie()
 {
