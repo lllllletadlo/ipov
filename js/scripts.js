@@ -213,7 +213,7 @@ function showWindow(windowName)
 {
     //window.localStorage.setItem("hairSoft-lastWindow",windowName);
 
-
+    // hide all fields ---- start
     hideAll();
 
     if(pageCurrent == "photoImage" && windowName !="photoImage")
@@ -223,6 +223,7 @@ function showWindow(windowName)
         $("#photoLupa").css("display","none");
         $(".mainTop h1").css("display","block");
     }
+    // hide all fields  ------ end
 
     var pageBefore = pageCurrent;
     pageCurrent = windowName;
@@ -332,6 +333,7 @@ function showWindow(windowName)
         $("#photoOk").css("display","inline-block");
         $("#photoLupa").css("display","inline-block");
         $(".mainTop h1").css("display","none");
+        $("#smallImage").css("display","block");
         containerVisibilitySet("backButton",true);
     }
 
@@ -601,11 +603,23 @@ function delete_cookie()
 }
 
 
+
 function vyfot()
 {
-    navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
-        destinationType: destinationType.FILE_URI });
+    if(typeof navigator.camera == "undefined")
+    {
+        alertG("Nelze spustit kameru","Chyba");
+        return;
+    }
 
+    if(imgUri=="")
+    {
+        navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 75,
+            destinationType: destinationType.FILE_URI });
+    } else
+    {
+        showWindow("photoImage");
+    }
 }
 
 function vyfot_ukazka()
@@ -615,9 +629,8 @@ function vyfot_ukazka()
 
 }
 function onPhotoDataSuccess_ukazka(imageData) {
-    showWindow('photoImage',true);
+    showWindow('photoImage');
     var smallImage = document.getElementById('smallImage');
-    smallImage.style.display = 'block';
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
     //$(".kalkulace.prvni .fotak").addClass("fotky");
@@ -641,7 +654,7 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageURI) {
-    showWindow('photoImage',true);
+    showWindow('photoImage');
     var smallImage = document.getElementById('smallImage');
     smallImage.style.display = 'block';
     smallImage.src = imageURI;
