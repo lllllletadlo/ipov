@@ -378,9 +378,10 @@ function ajaxSendRequest()
     var options = new FileUploadOptions();
     options.fileKey = "client_file";
 
+    alert(imgUri);
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
-
+    alert(imgUri);
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
