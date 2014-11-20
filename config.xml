@@ -36,6 +36,7 @@
     <gap:plugin name="com.inazar.datepicker"/>
     <gap:plugin name="org.apache.cordova.camera"/>
     <gap:plugin name="org.apache.cordova.dialogs" />
+    <gap:plugin name="org.apache.cordova.file" />
     <gap:plugin name="org.apache.cordova.file-transfer" />
 
 

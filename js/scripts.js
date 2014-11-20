@@ -381,17 +381,16 @@ function ajaxSendRequest()
         return
     }
 
+    alertG("a");
     $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
-
+    alertG("b");
     var options = new FileUploadOptions();
 
     options.fileKey = "client_file";
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
-
-
-
+    alertG("c");
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
@@ -408,12 +407,12 @@ function ajaxSendRequest()
 
     options.params = params;
     options.chunkedMode = false;
-
+    alertG("d");
     var ft = new FileTransfer();
     var clID = guid();
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
-
+    alertG("f");
     ft.upload(imgUri, url, win, fail, options, true);
 
 }
