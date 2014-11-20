@@ -378,17 +378,16 @@ function ajaxSendRequest()
         return
     }
 
-    alertG("a");
+
     $('.mainContent.nahravam p').html('Nahrávám formulář na server...');
     showWindow("nahravam");
-    alertG("b");
-    return;
-    var options = new FileUploadOptions();
 
+    var options = new FileUploadOptions();
+    alert("b");
     options.fileKey = "client_file";
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
-    alertG("c");
+    alert("c");
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
@@ -405,12 +404,12 @@ function ajaxSendRequest()
 
     options.params = params;
     options.chunkedMode = false;
-    alertG("d");
+    alert("d");
     var ft = new FileTransfer();
     var clID = guid();
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
-    alertG("f");
+    alert("f");
     ft.upload(imgUri, url, win, fail, options, true);
 
 }
@@ -651,14 +650,7 @@ function photoLupa()
 
 
 function onPhotoDataSuccess(imageURI) {
-    showWindow('photoImage');
-    var smallImage = document.getElementById('smallImage');
-    smallImage.style.display = 'block';
     smallImage.src = imageURI;
-
-    //$(".kalkulace.prvni .fotak").addClass("fotky");
-    fotkaPorizena = true;
-
     imgUri=imageURI;
 }
 
