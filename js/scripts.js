@@ -3,7 +3,6 @@ var destinationType; // sets the format of returned value
 var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
-var fotkaPorizena = false;
 var dataZpravy = "";
 var imgUri = "";
 
@@ -253,7 +252,7 @@ function showWindow(windowName)
             inputsClearAll($(".kalkulace"));
         }
 
-        if(fotkaPorizena)
+        if(imgUri!="")
             $(".kalkulace.prvni .fotak").addClass("fotky");
         else
             $(".kalkulace.prvni .fotak").removeClass("fotky");
@@ -383,11 +382,9 @@ function ajaxSendRequest()
     showWindow("nahravam");
 
     var options = new FileUploadOptions();
-    alert("b");
     options.fileKey = "client_file";
     options.fileName = imgUri.substr(imgUri.lastIndexOf('/') + 1);
     options.mimeType = "image/jpg";
-    alert("c");
 
     var params = {};
     params.client_name = $(".kalkulace input[name=client_name]").val();
@@ -404,12 +401,10 @@ function ajaxSendRequest()
 
     options.params = params;
     options.chunkedMode = false;
-    alert("d");
     var ft = new FileTransfer();
     var clID = guid();
     window.localStorage.setItem("ipovclID",clID);
     var url = "http://client.aireworks.eu/ipov/app/customer?client_id="+clID;
-    alert("f");
     ft.upload(imgUri, url, win, fail, options, true);
 
 }
@@ -451,12 +446,16 @@ function win(r) {
     console.log("Code = " + r.responseCode);
     console.log("Response = " + r.response);
     console.log("Sent = " + r.bytesSent);
+    alert("gg");
     $('.mainContent.nahravam p').html('Nahráno<br>Čekám na odpověď serveru...');
     window.localStorage.setItem("ipovStav","odeslano");
     checkStav.start();
 }
 
 function fail(error) {
+    alert("gg2");
+
+
     alertG(error.code,"Chyba!");
     showWindow("kalkulace");
     console.log("upload error source " + error.source);
@@ -630,7 +629,7 @@ function onPhotoDataSuccess_ukazka(imageData) {
     smallImage.src = "data:image/jpeg;base64," + imageData;
 
     //$(".kalkulace.prvni .fotak").addClass("fotky");
-    fotkaPorizena = true;
+
 
 }
 
