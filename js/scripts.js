@@ -4,6 +4,7 @@ var elMainTopH;
 var datePickerOpen = false; // workaround for datapicker be onepn only once time
 var pageCurrent;
 var fotkaPorizena = false;
+var dataZpravy = "";
 
 var checkStav = {
     stav:"",
@@ -257,6 +258,12 @@ function showWindow(windowName)
     if(windowName=="nahravam")
     {
         topTex("Nahrávám");
+
+        // reset previous data
+        $(".nahravam .boxGeneral h1").html("Vyčkejte prosím...");
+        $(".nahravam div.zpravy").html("");
+        dataZpravy = "";
+
         containerVisibilitySet("nahravam",true);
         //containerVisibilitySet("backButton",true);
         pageSys.reset();
@@ -461,18 +468,22 @@ function ajaxCheckStav()
             if (data.order_status == 1) {
                 $('.mainContent.nahravam p').html('Operátor převzal Váš požadavek a nyní zpracovává nabídku...');
             }
-            if (data.order_status == 2) {
-                if (action != 'response') {
-                    window.location = site_url + '/customer/response';
-                }
-                else {
-                    if (data.messages) {
-                        $('#orderresponse').empty();
-                        $.each(data.messages, function (index, value) {
-                            $('#orderresponse').append('<div class="list-group-item">' + value.message_data + '</div>');
-                        });
-                    }
+            if (data.order_status == 2 ) {
+                if (data.messages && dataZpravy != JSON.stringify(data.messages)) {
+                    dataZpravy = JSON.stringify(data.messages);
+                    console.log(data.messages);
+                    $(".nahravam .boxGeneral h1").html("Zprávy od operátora");
 
+                    var zpravyHtml = "";
+                    $.each(data.messages, function (index, value) {
+                        zpravyHtml += '<p class="m">' + value.message_data + '</p>';
+                    });
+
+                    vyska = $("body").height() - $(".nahravam .boxGeneral div.zpravy").offset().top - $(".nahravam .boxGeneral div.buttonBlue").height() - 20;
+                    var zpravyBox = $(".nahravam div.zpravy");
+                    $(zpravyBox).html(zpravyHtml)
+                        .css("height",vyska + "px")
+                        .scrollTop(zpravyBox.prop("scrollHeight"));
                 }
             }
         },

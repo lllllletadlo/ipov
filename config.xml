@@ -4,12 +4,14 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "cz.initedsolutions.ipov"
-        version   = "0.4">
+        version   = "0.5">
     <!--
         0.1
         0.2 worflow podle psd2
         0.3 pridan fotak
         0.4 demo verze s komunikaci na server
+        0.5 - pridany messages
+            - probem s top empty space on ios5 -> pridan splashscreen
 
 
 
@@ -50,8 +52,6 @@
     <feature name="http://api.phonegap.com/1.0/device" />
 
 
-    <!-- Customize your app and platform with the preference element. -->
-    <preference name="fullscreen"                 value="false" />           <!-- when is true, keyboard hide input -->
 
     <preference name="EnableViewportScale"        value="true" />
     <!--<preference name="phonegap-version"           value="3.5.0" />           all: current version of PhoneGap -->
