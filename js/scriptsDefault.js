@@ -181,6 +181,8 @@ function transitionInit()
     transitionObjectInit();
     containerHideAll(true);
 
+
+
 }
 
 // improve to hide by 3d transforms current window
